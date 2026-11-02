@@ -1,0 +1,119 @@
+BIO-SYNTHETIC / COMPLETE REFERENCE REGISTER
+Checked 2 November 2026.
+
+References 1–10 correspond to the unchanged 917-word programme note.
+Other references support artist profiles, recordings, maps and visual/technical design.
+
+[1] Music from Plant Biosignals — Miller and Cox, Music Theory Online (2024)
+https://mtosmt.org/issues/mto.24.30.1/mto.24.30.1.millercox.html
+
+[2] Mort Garson — Mother Earth’s Plantasia, Sacred Bones Records
+https://www.sacredbonesrecords.com/products/sbr3030-mort-garson-mother-earths-plantasia
+
+[3] Mamoru Fujieda — Patterns of Plants, Sarah Cahill, Pinna Records
+https://www.pinnarecords.com/products/530282-mamoru-fujieda-patterns-of-plants-sarah-cahill-piano
+
+[4] Plantland Radio — Artist Sanctuary; Masterplants Orchestra / Tritone Crisantemo identified as founder
+https://www.plantlandradio.com/artists
+
+[5] Modern Biology — In Brussels with Moss and a Clarinet (7 May 2026)
+https://modernbiology.substack.com/p/in-brussels-with-moss-and-a-clarinet
+
+[6] Masterplants Orchestra — concert practice and multi-plant system
+https://www.masterplants.net/orchestra
+
+[7] Mileece — PiP’s Plant Parlour
+https://www.mileece.is/pipsplantparlour
+
+[8] Brian d’Souza — Plants Can Dance
+https://www.briandsouza.in/plants-can-dance
+
+[9] Jungli — venue information
+https://junglithenomad.com/press-kit/
+
+[10] Anoushka Shankar — biography
+https://www.anoushkashankar.com/biography
+
+[11] The Manganiyar Seduction — Amarrass Records; listening reference
+https://amarrass.bandcamp.com/album/the-manganiyar-seduction-2
+
+[12] Roysten Abel Productions — The Manganiyar Seduction; existing production, separate from the proposed ensemble
+https://roystenabel.co/the-manganiyar-seduction/
+
+[13] adotj.music — correct Spotify artist page, supplied by Anshul Jain
+https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx
+
+[14] Anoushka Shankar — Chapter II: How Dark It Is Before Dawn; existing recording
+https://open.spotify.com/album/3PtdHn0NDmOUPRNmRsuPfN
+
+[15] Modern Biology — existing SoundCloud catalogue
+https://soundcloud.com/modernbiology
+
+[16] Masterplants Orchestra — Live in the Open Temple; linked by the official concert page
+https://www.youtube.com/watch?v=8JCZYlaUvUo
+
+[17] Wild Anima — existing Spotify catalogue
+https://open.spotify.com/artist/5hFivotCpgANmtLv4yx67u
+
+[18] Brian d’Souza — 007: Brian d’Souza (Sunflowers), Auntie Flo / Music to Watch Seeds Grow By
+https://auntieflo.bandcamp.com/album/007-brian-d-souza-sunflowers
+
+[19] Mileece — existing SoundCloud catalogue
+https://soundcloud.com/Mileece
+
+[20] Biosis / René Roco — Wachuma & FM; existing recording
+https://biosis.bandcamp.com/track/wachuma-fm
+
+[21] Mort Garson — Mother Earth’s Plantasia; official Bandcamp release
+https://mortgarson.bandcamp.com/album/mother-earths-plantasia
+
+[22] Sarah Cahill — Fujieda, Seventh Collection, Pattern B; video linked by Pinna Records
+https://www.youtube.com/watch?v=soKGLdWlRpc
+
+[23] Plantland Radio — official station website
+https://www.plantlandradio.com/
+
+[24] Plantland Radio — official broadcast embed linked by the station website
+https://radio.plantlandradio.com/public/plantland_radio/embed
+
+[25] Tom Iddan / Tito the Wize — wider Spotify catalogue linked by Plantland; not all tracks established as plant music
+https://open.spotify.com/artist/6Ws7Sc1hQEWOHtmhQEaS5l
+
+[26] Linkin Park — official website; visual reference supplied by the curator
+https://www.linkinpark.com/
+
+[27] Sasuke Haraguchi — Discography; interaction reference supplied by the curator
+https://sasukeharaguchi.com/discography/
+
+[28] SoundCloud — official Widget API; playback and track metadata controls
+https://developers.soundcloud.com/docs/api/html5-widget
+
+[29] YouTube — official IFrame Player API; playback and state controls
+https://developers.google.com/youtube/iframe_api_reference
+
+[30] Google Maps — regional Dandeli view; no Jungli coordinates or festival pin
+https://maps.google.com/maps?q=Dandeli%2C%20Karnataka%2C%20India&z=9&output=embed
+
+[31] Google Fonts — Anton; SIL Open Font License
+https://github.com/google/fonts/tree/main/ofl/anton
+
+[32] Google Fonts — Space Grotesk; SIL Open Font License
+https://github.com/google/fonts/tree/main/ofl/spacegrotesk
+
+[33] adotj.music, fatty recording co. — Epipremnum Aureum; Spotify preview metadata
+https://open.spotify.com/track/33bZcYkUnYpktLRq3YTrnF
+
+[34] Anoushka Shankar — Pacifica; Spotify preview metadata
+https://open.spotify.com/track/55VGEGacfrhX3o5sseRUCC
+
+[35] Quiet Voices, Hélène Vogelsinger, Wild Anima — Quiet Voices of the Ether; Spotify preview metadata
+https://open.spotify.com/track/5turAR3soIgE4bf1Fi3XcD
+
+[36] Tito the Wize — Jabulani; Spotify preview metadata
+https://open.spotify.com/track/2Xzn6PmH3PM5wgY5dhDnnr
+
+All festival invitations, commissions and production arrangements are hypothetical.
+Plantland Radio was founded by Masterplants Orchestra / Tritone Crisantemo.
+Tito the Wize is Tom Iddan’s linked catalogue; the preview is not identified as plant-derived.
+The Manganiyar Seduction is an existing Roysten Abel production and Amarrass release, not the proposed ensemble.
+BECA settings are described from Anshul Jain’s supplied account. Other artists use their own instruments.

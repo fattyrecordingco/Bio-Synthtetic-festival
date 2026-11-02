@@ -1,0 +1,62 @@
+BIO-SYNTHETIC / check against the supplied assignment brief
+Checked: 2 November 2026
+
+Programme note
+  917 words using whitespace-separated words (including attached reference
+  markers); 800 minimum / 1,000 maximum. All 10 paragraphs match the supplied
+  HTML and booklet verbatim. The website's other text, schedule, bibliography,
+  cover and listening descriptions are separate from this word count.
+  The note is long enough to satisfy the brief. It is not necessary to reach
+  exactly 1,000 words. It remains a pre-event audience introduction.
+
+Submission structure in the supplied DOCX
+  1. Cover: Anshul Jain / adotj, Curation Assignment, Expanding Parameters,
+     connections to Music & its Others and Experimentalism, Jungli near Dandeli,
+     Karnataka, artists, approximately 18 hours (14:00–08:00).
+  2. Programme note: 917 words across the two existing note pages.
+  3. Order of event: all 17 encounters, plus existing-recording reference links.
+  4. Sources: numbered bibliography and creation / AI assistance credits.
+
+Marking criteria — evidence already in the note
+  Theme (30%): paragraph 2 frames Expanding Parameters as composition through
+  relationships between human decisions and plant-derived material, with Music
+  & its Others extending attention beyond humans.
+  Compositional features (30%): BECA's scale, root, range, tempo, sensitivity and
+  rhythm; timbre and register; composed Moog tunes versus measured/composed piano
+  pieces; acoustic sustain and response; multi-plant layering; shared tonal
+  centre, cycles, repetition, silence and sitar ornamentation.
+  Presentation (30%): non-conventional overnight setting; ground-level performers;
+  speaker arrays; headphones; spatial installations; workshop; audience movement,
+  participation, return visits and rest; projections receding at sunrise.
+  Diversity (10%): historical electronic composition, contemporary biosonification,
+  acoustic piano, voice, field recordings, multi-plant ensemble, Manganiyar
+  collaboration, modular synthesis, participatory sound and sitar jugalbandi.
+
+Preservation and factual distinctions
+  Solo BECA set, Manganiyar collaboration and Anoushka Shankar sunrise jugalbandi
+  remain three separate performances. Mort Garson is recorded listening.
+  Other artists use their own instruments. BECA is generative inside a performer-
+  selected framework. Festival commissions and invitations are hypothetical.
+  Main-stage times, intervals, meals, installations and sunrise-relative timing
+  match the source. Dawn is not assigned an invented exact clock time or date.
+  Festival map is illustrative; regional map shows Dandeli, no exact venue pin.
+
+Booklet, citations and identity audit
+  Original source files are untouched. The downloadable booklet preserves the
+  note and schedule, removes the old cover picture, corrects the Spotify artist
+  link and companion URL, and includes the complete website reference register.
+  Plantland Radio is explicitly credited to Masterplants Orchestra / Tritone
+  Crisantemo. The station broadcast, artist directory and Tom Iddan / Tito the
+  Wize catalogue are separate links and players. The Tito preview is not claimed
+  to be a plant-derived recording. The Manganiyar Seduction is a reference to an
+  existing Roysten Abel production, not a confirmed festival ensemble.
+  Artist and record profiles cite the numbered register. Existing recordings and
+  new festival works remain distinct. content/media-verification.json records
+  checked player IDs, sources and preview metadata. content/sources.txt is the
+  complete downloadable reference list; it also appears in the booklet.
+
+Handbook
+  Sections 4.5 and 4.6 of the MMT Student Handbook were not supplied in this folder.
+  Existing AI assistance credits are retained; compliance with those unseen
+  sections has not been verified. This check covers the assignment brief supplied
+  in the chat, not a claim of a particular mark or handbook approval.

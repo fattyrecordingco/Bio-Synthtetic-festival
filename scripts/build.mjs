@@ -1,0 +1,12 @@
+import {cp,mkdir,rm} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const dist=path.join(root,'dist');
+await rm(dist,{recursive:true,force:true});
+await mkdir(path.join(dist,'content'),{recursive:true});
+for(const name of ['index.html','styles.css','app.js','art.js','player.js'])await cp(path.join(root,name),path.join(dist,name));
+for(const name of ['festival.json','programme-note.txt','media-verification.json','sources.txt'])await cp(path.join(root,'content',name),path.join(dist,'content',name));
+await cp(path.join(root,'assets'),path.join(dist,'assets'),{recursive:true});
+await cp(path.join(root,'ASSIGNMENT-CHECK.txt'),path.join(dist,'ASSIGNMENT-CHECK.txt'));
+console.log('Static website built in dist/.');

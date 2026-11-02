@@ -1,0 +1,385 @@
+{
+  "checked": "2026-11-02",
+  "method": "Artist/label source pages, Bandcamp data-tralbum IDs, Spotify embed entity metadata; YouTube embed IDs found in artist/label HTML. Playback availability remains service-dependent.",
+  "programmeNoteSHA256": "fa01f5cf81b4ee68cbaf12d0644014094dd962eeea90dae51998e6e6b24e533b",
+  "programmeNoteWords": 917,
+  "bookletNoteMatches": true,
+  "entries": [
+    {
+      "id": "adotj",
+      "artist": "adotj",
+      "source": "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx",
+      "recording": "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx",
+      "embed": [
+        "spotify",
+        "artist/1taiQkQLBzfeMXIWMi2Hdx"
+      ],
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/b5c97560c7c21fa6abfcf63cd11b8adbc308e658",
+        "title": "Epipremnum Aureum",
+        "artist": "adotj.music, fatty recording co.",
+        "source": "https://open.spotify.com/track/33bZcYkUnYpktLRq3YTrnF",
+        "verified": "2026-11-02"
+      },
+      "sourceRefs": [
+        13
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "manganiyar",
+      "artist": "Manganiyar musicians",
+      "source": "https://roystenabel.co/the-manganiyar-seduction/",
+      "recording": "https://amarrass.bandcamp.com/album/the-manganiyar-seduction-2",
+      "embed": [
+        "bandcamp",
+        "album=1805014959"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        11,
+        12
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "anoushka",
+      "artist": "Anoushka Shankar",
+      "source": "https://www.anoushkashankar.com/biography",
+      "recording": "https://open.spotify.com/album/3PtdHn0NDmOUPRNmRsuPfN",
+      "embed": [
+        "spotify",
+        "album/3PtdHn0NDmOUPRNmRsuPfN"
+      ],
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/e341a7db80e85bdd542e50fa8f499878919c2192",
+        "title": "Pacifica",
+        "artist": "Anoushka Shankar",
+        "source": "https://open.spotify.com/track/55VGEGacfrhX3o5sseRUCC",
+        "verified": "2026-11-02"
+      },
+      "sourceRefs": [
+        10,
+        14
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "modern",
+      "artist": "Modern Biology",
+      "source": "https://modernbiology.substack.com/p/in-brussels-with-moss-and-a-clarinet",
+      "recording": "https://soundcloud.com/modernbiology",
+      "embed": [
+        "soundcloud",
+        "https://soundcloud.com/modernbiology"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        5,
+        15
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "masterplants",
+      "artist": "Masterplants Orchestra",
+      "source": "https://www.masterplants.net/orchestra",
+      "recording": "https://www.youtube.com/watch?v=8JCZYlaUvUo",
+      "embed": [
+        "youtube",
+        "8JCZYlaUvUo"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        4,
+        6,
+        16
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "wild",
+      "artist": "Wild Anima",
+      "source": "https://www.plantlandradio.com/artists",
+      "recording": "https://open.spotify.com/artist/5hFivotCpgANmtLv4yx67u",
+      "embed": [
+        "spotify",
+        "artist/5hFivotCpgANmtLv4yx67u"
+      ],
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/a9b5647cdac2422df40d9418d393240d01c3ba43",
+        "title": "Quiet Voices of the Ether",
+        "artist": "Quiet Voices, Hélène Vogelsinger, Wild Anima",
+        "source": "https://open.spotify.com/track/5turAR3soIgE4bf1Fi3XcD",
+        "verified": "2026-11-02"
+      },
+      "sourceRefs": [
+        4,
+        17
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "brian",
+      "artist": "Brian d’Souza",
+      "source": "https://www.briandsouza.in/plants-can-dance",
+      "recording": "https://auntieflo.bandcamp.com/album/007-brian-d-souza-sunflowers",
+      "embed": [
+        "bandcamp",
+        "album=4292999955"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        8,
+        18
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "mileece",
+      "artist": "Mileece",
+      "source": "https://www.mileece.is/pipsplantparlour",
+      "recording": "https://soundcloud.com/Mileece",
+      "embed": [
+        "soundcloud",
+        "https://soundcloud.com/Mileece"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        7,
+        19
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "biosis",
+      "artist": "Biosis",
+      "source": "https://biosis.bandcamp.com/track/wachuma-fm",
+      "recording": "https://biosis.bandcamp.com/track/wachuma-fm",
+      "embed": [
+        "bandcamp",
+        "track=2271708411"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        20
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "garson",
+      "artist": "Mort Garson",
+      "source": "https://mortgarson.bandcamp.com/album/mother-earths-plantasia",
+      "recording": "https://mortgarson.bandcamp.com/album/mother-earths-plantasia",
+      "embed": [
+        "bandcamp",
+        "album=1251308296"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        21
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "fujieda",
+      "artist": "Mamoru Fujieda",
+      "source": "https://www.pinnarecords.com/products/530282-mamoru-fujieda-patterns-of-plants-sarah-cahill-piano",
+      "recording": "https://www.youtube.com/watch?v=soKGLdWlRpc",
+      "embed": [
+        "youtube",
+        "soKGLdWlRpc"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        3,
+        22
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "plantland",
+      "artist": "Plantland Radio",
+      "source": "https://www.plantlandradio.com/artists",
+      "recording": "https://www.plantlandradio.com/",
+      "embed": [
+        "radio",
+        "https://radio.plantlandradio.com/public/plantland_radio/embed"
+      ],
+      "preview": null,
+      "sourceRefs": [
+        4,
+        23
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    },
+    {
+      "id": "tom",
+      "artist": "Tom Iddan / Tito the Wize",
+      "source": "https://www.plantlandradio.com/artists",
+      "recording": "https://open.spotify.com/artist/6Ws7Sc1hQEWOHtmhQEaS5l",
+      "embed": [
+        "spotify",
+        "artist/6Ws7Sc1hQEWOHtmhQEaS5l"
+      ],
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/73844041a4f7b4b12f2dc4fbb1d38b7a68ef8e14",
+        "title": "Jabulani",
+        "artist": "Tito the Wize",
+        "source": "https://open.spotify.com/track/2Xzn6PmH3PM5wgY5dhDnnr",
+        "verified": "2026-11-02"
+      },
+      "sourceRefs": [
+        4,
+        25
+      ],
+      "result": "Source identity and attribution checked; not a festival recording"
+    }
+  ],
+  "references": [
+    [
+      "Music from Plant Biosignals — Miller and Cox, Music Theory Online (2024)",
+      "https://mtosmt.org/issues/mto.24.30.1/mto.24.30.1.millercox.html"
+    ],
+    [
+      "Mort Garson — Mother Earth’s Plantasia, Sacred Bones Records",
+      "https://www.sacredbonesrecords.com/products/sbr3030-mort-garson-mother-earths-plantasia"
+    ],
+    [
+      "Mamoru Fujieda — Patterns of Plants, Sarah Cahill, Pinna Records",
+      "https://www.pinnarecords.com/products/530282-mamoru-fujieda-patterns-of-plants-sarah-cahill-piano"
+    ],
+    [
+      "Plantland Radio — Artist Sanctuary; Masterplants Orchestra / Tritone Crisantemo identified as founder",
+      "https://www.plantlandradio.com/artists"
+    ],
+    [
+      "Modern Biology — In Brussels with Moss and a Clarinet (7 May 2026)",
+      "https://modernbiology.substack.com/p/in-brussels-with-moss-and-a-clarinet"
+    ],
+    [
+      "Masterplants Orchestra — concert practice and multi-plant system",
+      "https://www.masterplants.net/orchestra"
+    ],
+    [
+      "Mileece — PiP’s Plant Parlour",
+      "https://www.mileece.is/pipsplantparlour"
+    ],
+    [
+      "Brian d’Souza — Plants Can Dance",
+      "https://www.briandsouza.in/plants-can-dance"
+    ],
+    [
+      "Jungli — venue information",
+      "https://junglithenomad.com/press-kit/"
+    ],
+    [
+      "Anoushka Shankar — biography",
+      "https://www.anoushkashankar.com/biography"
+    ],
+    [
+      "The Manganiyar Seduction — Amarrass Records; listening reference",
+      "https://amarrass.bandcamp.com/album/the-manganiyar-seduction-2"
+    ],
+    [
+      "Roysten Abel Productions — The Manganiyar Seduction; existing production, separate from the proposed ensemble",
+      "https://roystenabel.co/the-manganiyar-seduction/"
+    ],
+    [
+      "adotj.music — correct Spotify artist page, supplied by Anshul Jain",
+      "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx"
+    ],
+    [
+      "Anoushka Shankar — Chapter II: How Dark It Is Before Dawn; existing recording",
+      "https://open.spotify.com/album/3PtdHn0NDmOUPRNmRsuPfN"
+    ],
+    [
+      "Modern Biology — existing SoundCloud catalogue",
+      "https://soundcloud.com/modernbiology"
+    ],
+    [
+      "Masterplants Orchestra — Live in the Open Temple; linked by the official concert page",
+      "https://www.youtube.com/watch?v=8JCZYlaUvUo"
+    ],
+    [
+      "Wild Anima — existing Spotify catalogue",
+      "https://open.spotify.com/artist/5hFivotCpgANmtLv4yx67u"
+    ],
+    [
+      "Brian d’Souza — 007: Brian d’Souza (Sunflowers), Auntie Flo / Music to Watch Seeds Grow By",
+      "https://auntieflo.bandcamp.com/album/007-brian-d-souza-sunflowers"
+    ],
+    [
+      "Mileece — existing SoundCloud catalogue",
+      "https://soundcloud.com/Mileece"
+    ],
+    [
+      "Biosis / René Roco — Wachuma & FM; existing recording",
+      "https://biosis.bandcamp.com/track/wachuma-fm"
+    ],
+    [
+      "Mort Garson — Mother Earth’s Plantasia; official Bandcamp release",
+      "https://mortgarson.bandcamp.com/album/mother-earths-plantasia"
+    ],
+    [
+      "Sarah Cahill — Fujieda, Seventh Collection, Pattern B; video linked by Pinna Records",
+      "https://www.youtube.com/watch?v=soKGLdWlRpc"
+    ],
+    [
+      "Plantland Radio — official station website",
+      "https://www.plantlandradio.com/"
+    ],
+    [
+      "Plantland Radio — official broadcast embed linked by the station website",
+      "https://radio.plantlandradio.com/public/plantland_radio/embed"
+    ],
+    [
+      "Tom Iddan / Tito the Wize — wider Spotify catalogue linked by Plantland; not all tracks established as plant music",
+      "https://open.spotify.com/artist/6Ws7Sc1hQEWOHtmhQEaS5l"
+    ],
+    [
+      "Linkin Park — official website; visual reference supplied by the curator",
+      "https://www.linkinpark.com/"
+    ],
+    [
+      "Sasuke Haraguchi — Discography; interaction reference supplied by the curator",
+      "https://sasukeharaguchi.com/discography/"
+    ],
+    [
+      "SoundCloud — official Widget API; playback and track metadata controls",
+      "https://developers.soundcloud.com/docs/api/html5-widget"
+    ],
+    [
+      "YouTube — official IFrame Player API; playback and state controls",
+      "https://developers.google.com/youtube/iframe_api_reference"
+    ],
+    [
+      "Google Maps — regional Dandeli view; no Jungli coordinates or festival pin",
+      "https://maps.google.com/maps?q=Dandeli%2C%20Karnataka%2C%20India&z=9&output=embed"
+    ],
+    [
+      "Google Fonts — Anton; SIL Open Font License",
+      "https://github.com/google/fonts/tree/main/ofl/anton"
+    ],
+    [
+      "Google Fonts — Space Grotesk; SIL Open Font License",
+      "https://github.com/google/fonts/tree/main/ofl/spacegrotesk"
+    ],
+    [
+      "adotj.music, fatty recording co. — Epipremnum Aureum; Spotify preview metadata",
+      "https://open.spotify.com/track/33bZcYkUnYpktLRq3YTrnF"
+    ],
+    [
+      "Anoushka Shankar — Pacifica; Spotify preview metadata",
+      "https://open.spotify.com/track/55VGEGacfrhX3o5sseRUCC"
+    ],
+    [
+      "Quiet Voices, Hélène Vogelsinger, Wild Anima — Quiet Voices of the Ether; Spotify preview metadata",
+      "https://open.spotify.com/track/5turAR3soIgE4bf1Fi3XcD"
+    ],
+    [
+      "Tito the Wize — Jabulani; Spotify preview metadata",
+      "https://open.spotify.com/track/2Xzn6PmH3PM5wgY5dhDnnr"
+    ]
+  ]
+}

@@ -1,0 +1,807 @@
+{
+  "artists": [
+    {
+      "id": "adotj",
+      "name": "adotj",
+      "mark": "a.",
+      "role": "BECA / synthesis / interspecies music",
+      "position": "25% 40%",
+      "bio": "Anshul Jain / adotj is the artist and inventor behind BECA at Fatty Recording Co. His practice brings plant-derived data into live synthesis, MIDI performance and audiovisual experiments. BECA’s scale, root note, tempo and other settings let him compose a framework for generative interspecies music. Find his recordings on Spotify as adotj.music.",
+      "commission": "Three encounters run through the festival: a solo BECA set, a collaboration with invited Manganiyar musicians, and a sunrise jugalbandi with Anoushka Shankar. Different settings reveal how the same instrument can enter different musical relationships.",
+      "source": "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx",
+      "listen": "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx",
+      "media": [
+        "spotify",
+        "artist/1taiQkQLBzfeMXIWMi2Hdx"
+      ],
+      "caption": "Listen to adotj.music on Spotify. Festival performance credit: adotj.",
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/b5c97560c7c21fa6abfcf63cd11b8adbc308e658",
+        "title": "Epipremnum Aureum",
+        "artist": "adotj.music, fatty recording co.",
+        "source": "https://open.spotify.com/track/33bZcYkUnYpktLRq3YTrnF",
+        "verified": "2026-11-02"
+      },
+      "playerTitle": "Epipremnum Aureum",
+      "sourceRefs": [
+        13
+      ]
+    },
+    {
+      "id": "manganiyar",
+      "name": "Manganiyar musicians",
+      "mark": "M / R",
+      "role": "Voice / strings / percussion",
+      "position": "85% 25%",
+      "bio": "The invited ensemble brings musicians from Rajasthan’s Manganiyar community into a new encounter with BECA. Voice, bowed strings and percussion offer possibilities for sustained melody, rhythmic cycles and exchanges of short phrases. Ensemble membership and instrumentation would be agreed with the musicians.",
+      "commission": "Roots in Conversation is developed through a shared residency. The musicians choose repertoire and help determine how electronic patterns enter, accompany or leave room for their music. A shared tonal centre and tempo support moments of exchange without requiring a fixed sequence.",
+      "source": "https://roystenabel.co/the-manganiyar-seduction/",
+      "listen": "https://amarrass.bandcamp.com/album/the-manganiyar-seduction-2",
+      "media": [
+        "bandcamp",
+        "album=1805014959"
+      ],
+      "caption": "Listening reference: The Manganiyar Seduction, directed by Roysten Abel, Amarrass Records. This is an existing production, distinct from our proposed ensemble and commission.",
+      "playerTitle": "The Manganiyar Seduction",
+      "sourceRefs": [
+        11,
+        12
+      ]
+    },
+    {
+      "id": "anoushka",
+      "name": "Anoushka Shankar",
+      "mark": "A / S",
+      "role": "Sitar / improvisation",
+      "position": "50% 85%",
+      "bio": "Sitarist and composer Anoushka Shankar works across classical and contemporary settings, with a practice that includes acoustic and electronic collaborations. Her approach to improvisation offers a starting point for a sustained encounter with plant-derived musical material.",
+      "commission": "First Light brings Shankar and adotj together across sunrise. A jointly chosen tonal reference provides common ground for sitar phrasing, sustained resonance and BECA’s generative patterns. Scale selection supplies pitch material; melodic movement and ornamentation remain musical decisions.",
+      "source": "https://www.anoushkashankar.com/biography",
+      "listen": "https://open.spotify.com/album/3PtdHn0NDmOUPRNmRsuPfN",
+      "media": [
+        "spotify",
+        "album/3PtdHn0NDmOUPRNmRsuPfN"
+      ],
+      "caption": "Listening reference: Chapter II: How Dark It Is Before Dawn. Existing music, offered as an introduction to the artist; the sunrise commission is hypothetical.",
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/e341a7db80e85bdd542e50fa8f499878919c2192",
+        "title": "Pacifica",
+        "artist": "Anoushka Shankar",
+        "source": "https://open.spotify.com/track/55VGEGacfrhX3o5sseRUCC",
+        "verified": "2026-11-02"
+      },
+      "playerTitle": "Pacifica",
+      "sourceRefs": [
+        10,
+        14
+      ]
+    },
+    {
+      "id": "modern",
+      "name": "Modern Biology",
+      "mark": "M / B",
+      "role": "Plant signals / analog synthesis",
+      "position": "5% 65%",
+      "bio": "Modern Biology is the project of biologist and musician Tarun Nayar. His work explores plant and fungal inputs, synthesis and improvised musical encounters. A documented field performance with moss and clarinet provides a close precedent for the festival’s acoustic exchange.",
+      "commission": "A late-afternoon set pairs plant-driven electronics with an invited acoustic musician. Sustained tones, short replies and gaps between phrases allow the performers to discover their relationship in real time.",
+      "source": "https://modernbiology.substack.com/p/in-brussels-with-moss-and-a-clarinet",
+      "listen": "https://soundcloud.com/modernbiology",
+      "media": [
+        "soundcloud",
+        "https://soundcloud.com/modernbiology"
+      ],
+      "caption": "Explore Modern Biology’s existing SoundCloud catalogue. The festival acoustic guest would be selected collaboratively.",
+      "playerTitle": "Modern Biology catalogue",
+      "sourceRefs": [
+        5,
+        15
+      ]
+    },
+    {
+      "id": "masterplants",
+      "name": "Masterplants Orchestra",
+      "mark": "M / O",
+      "role": "Multi-plant ensemble / electronics",
+      "position": "95% 70%",
+      "bio": "Led by Tritone Crisantemo, Masterplants Orchestra works with multiple plant inputs and electronic instruments using its Symphony system. Masterplants Orchestra / Tritone also founded Plantland Radio, the separate radio platform and artist directory used in the Leaf Library.",
+      "commission": "The evening set begins by introducing individual plant channels before combining them. The proposal asks the audience to follow differences in register, activity and texture as a sparse exchange becomes a layered ensemble.",
+      "source": "https://www.masterplants.net/orchestra",
+      "listen": "https://www.youtube.com/watch?v=8JCZYlaUvUo",
+      "media": [
+        "youtube",
+        "8JCZYlaUvUo"
+      ],
+      "caption": "Performance reference: Live in the Open Temple, linked from the artist’s official concert page.",
+      "playerTitle": "Live in the Open Temple",
+      "sourceRefs": [
+        4,
+        6,
+        16
+      ]
+    },
+    {
+      "id": "wild",
+      "name": "Wild Anima",
+      "mark": "W / A",
+      "role": "Voice / plants / field recordings",
+      "position": "50% 10%",
+      "bio": "Wild Anima works with voice and environmental recordings to assemble sound collages. The Plantland Radio profile describes a practice attentive to microtones and natural rhythmic detail, alongside plant music using Bamboo M and PlantWave instruments.",
+      "commission": "A new twilight performance places the voice inside an electronic and environmental texture. Breath and vocal phrasing introduce a human timescale while plant-derived events offer openings for response.",
+      "source": "https://www.plantlandradio.com/artists",
+      "listen": "https://open.spotify.com/artist/5hFivotCpgANmtLv4yx67u",
+      "media": [
+        "spotify",
+        "artist/5hFivotCpgANmtLv4yx67u"
+      ],
+      "caption": "Existing recordings introduce Wild Anima’s wider practice; the twilight performance is a new proposed commission.",
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/a9b5647cdac2422df40d9418d393240d01c3ba43",
+        "title": "Quiet Voices of the Ether",
+        "artist": "Quiet Voices, Hélène Vogelsinger, Wild Anima",
+        "source": "https://open.spotify.com/track/5turAR3soIgE4bf1Fi3XcD",
+        "verified": "2026-11-02"
+      },
+      "playerTitle": "Quiet Voices of the Ether",
+      "sourceRefs": [
+        4,
+        17
+      ]
+    },
+    {
+      "id": "brian",
+      "name": "Brian d’Souza",
+      "mark": "B / dS",
+      "role": "Plants Can Dance / modular synthesis",
+      "position": "15% 25%",
+      "bio": "Brian d’Souza’s Plants Can Dance project uses biodata to trigger notes in modular synthesis. His wider practice brings field recordings and electroacoustic production together, offering a bridge between close listening and electronic performance.",
+      "commission": "After midnight, his set follows the possibilities of its live system. A pulse may appear or dissolve; texture and repetition can provide continuity while the exact musical direction emerges through performance.",
+      "source": "https://www.briandsouza.in/plants-can-dance",
+      "listen": "https://auntieflo.bandcamp.com/album/007-brian-d-souza-sunflowers",
+      "media": [
+        "bandcamp",
+        "album=4292999955"
+      ],
+      "caption": "Listening reference: Sunflowers, released as 007: Brian d’Souza on Music to Watch Seeds Grow By.",
+      "playerTitle": "Sunflowers",
+      "sourceRefs": [
+        8,
+        18
+      ]
+    },
+    {
+      "id": "mileece",
+      "name": "Mileece",
+      "mark": "m*",
+      "role": "Participatory installation / spatial sound",
+      "position": "65% 50%",
+      "bio": "Mileece’s work includes participatory plant installations and spatial electronic sound. PiP’s Plant Parlour offers a documented example in which visitors enter a plant-filled environment and participate in an unfolding, four-channel musical experience.",
+      "commission": "Leaf Room is a new, small-group installation commission informed by that practice. A surrounding speaker arrangement encourages listeners to notice how position, attention and participation change their experience.",
+      "source": "https://www.mileece.is/pipsplantparlour",
+      "listen": "https://soundcloud.com/Mileece",
+      "media": [
+        "soundcloud",
+        "https://soundcloud.com/Mileece"
+      ],
+      "caption": "Explore Mileece’s existing recordings. Leaf Room is a hypothetical festival commission, distinct from PiP’s Plant Parlour.",
+      "playerTitle": "Mileece catalogue",
+      "sourceRefs": [
+        7,
+        19
+      ]
+    },
+    {
+      "id": "biosis",
+      "name": "Biosis",
+      "mark": "B / io",
+      "role": "Plants / field recordings / synthesizers",
+      "position": "75% 95%",
+      "bio": "Biosis is the project of composer and producer René Roco. Plants, synthesizers and ambient recordings meet in an improvised sound installation. His recording Wachuma & FM offers an introduction to that contemplative approach.",
+      "commission": "Night Nursery continues while the main stage rests. Headphones allow returning visitors to encounter an installation at their own pace, alongside a BECA station retaining a stable mapping from afternoon into dawn.",
+      "source": "https://biosis.bandcamp.com/track/wachuma-fm",
+      "listen": "https://biosis.bandcamp.com/track/wachuma-fm",
+      "media": [
+        "bandcamp",
+        "track=2271708411"
+      ],
+      "caption": "Listening reference: Wachuma & FM, René Roco / Biosis, 2026.",
+      "playerTitle": "Wachuma & FM",
+      "sourceRefs": [
+        20
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "arrival",
+      "time": "14:00",
+      "end": "14:30",
+      "title": "Arrive. Slow down. Listen.",
+      "artist": "A guided environmental listening walk",
+      "type": "listening",
+      "phase": "afternoon",
+      "space": "grove",
+      "description": "Begin with the sounds already present at Jungli. A local facilitator guides a short walk, making space for footsteps, wind and surrounding activity before electronic instruments enter. Seated listening is available as an alternative.",
+      "idea": "The setting supplies musical context before the first amplified sound."
+    },
+    {
+      "id": "leaf-library",
+      "time": "14:30",
+      "end": "15:30",
+      "title": "Music for / from / with plants",
+      "artist": "The Leaf Library · hosted by Fatty Recording Co.",
+      "type": "listening",
+      "phase": "afternoon",
+      "space": "library",
+      "description": "A hosted listening session moves between Mort Garson’s Plantasia, Mamoru Fujieda’s Patterns of Plants in Sarah Cahill’s piano recordings, and contemporary Plantland Radio selections including Tom Iddan. Short excerpts alternate with conversation and a live BECA comparison.",
+      "idea": "Compare music composed for plants, compositions developed from measurements, and live biosonification.",
+      "record": "garson"
+    },
+    {
+      "id": "workshop",
+      "time": "15:30",
+      "end": "16:30",
+      "title": "From leaf to loudspeaker",
+      "artist": "adotj / Fatty Recording Co. · BECA workshop",
+      "type": "workshop",
+      "phase": "afternoon",
+      "space": "nursery",
+      "description": "Hear the same incoming material through different scales, root notes and tempos. In small groups, participants choose settings and hear how a musical framework affects the result. No previous experience with synthesis is needed.",
+      "idea": "Changing the mapping is a compositional decision. The workshop makes that decision audible.",
+      "artists": [
+        "adotj"
+      ]
+    },
+    {
+      "id": "installations",
+      "time": "16:30",
+      "end": "17:00",
+      "title": "Wander through the signals",
+      "artist": "Mileece · Biosis · Fatty Recording Co.",
+      "type": "installation",
+      "phase": "afternoon",
+      "space": "nursery",
+      "description": "Explore Leaf Room and the continuing plant stations at your own pace. Small-group sessions and quiet headphone listening allow close attention between the workshop and the first main performance.",
+      "idea": "A visitor’s route and duration of listening help shape the experience.",
+      "artists": [
+        "mileece",
+        "biosis"
+      ]
+    },
+    {
+      "id": "modern-set",
+      "time": "17:00",
+      "end": "17:50",
+      "title": "An acoustic encounter",
+      "artist": "Modern Biology + invited acoustic guest",
+      "type": "performance",
+      "phase": "twilight",
+      "space": "grove",
+      "description": "Plant-driven electronics meet an acoustic instrumentalist chosen with Modern Biology. Long tones expose small electronic figures; short phrases invite replies. The instrumentation is open so the artists can develop a responsive partnership during the residency.",
+      "idea": "Sustained sound, phrasing and silence provide ways to improvise with generative material.",
+      "artists": [
+        "modern"
+      ]
+    },
+    {
+      "id": "wild-set",
+      "time": "17:50",
+      "end": "18:20",
+      "title": "A voice among leaves",
+      "artist": "Wild Anima · new twilight commission",
+      "type": "performance",
+      "phase": "twilight",
+      "space": "grove",
+      "description": "Voice, plant instruments and field recordings overlap as the light changes. Vocal gestures can emerge from the surrounding electronic texture, linger as a drone or answer a brief event.",
+      "idea": "The contrast between breath-shaped phrases and electronically organised events becomes the subject of the music.",
+      "artists": [
+        "wild"
+      ]
+    },
+    {
+      "id": "dinner",
+      "time": "18:20",
+      "end": "19:30",
+      "title": "The common table",
+      "artist": "Shared meal · conversation · installation visits",
+      "type": "gathering",
+      "phase": "twilight",
+      "space": "table",
+      "description": "Eat together, talk about what you have heard, or return to a plant station. The festival leaves space for conversation and unhurried listening between performances.",
+      "idea": "Meals and social space belong to the rhythm of this overnight gathering."
+    },
+    {
+      "id": "roots",
+      "time": "19:30",
+      "end": "20:30",
+      "title": "Roots in Conversation",
+      "artist": "adotj × invited Manganiyar musicians",
+      "type": "performance",
+      "phase": "twilight",
+      "space": "grove",
+      "description": "A new commission developed with musicians from Rajasthan’s Manganiyar community. The musicians choose the songs, instruments and terms of the encounter. Unaccompanied passages establish their phrasing before plant-derived electronic patterns enter.",
+      "idea": "A jointly chosen tonal centre and tempo provide common ground. Repeated phrases and rhythmic cycles meet generative variation, with room for passages of free timing.",
+      "artists": [
+        "manganiyar",
+        "adotj"
+      ]
+    },
+    {
+      "id": "interval1",
+      "time": "20:30",
+      "end": "21:00",
+      "title": "A little room between sounds",
+      "artist": "Interval and changeover",
+      "type": "gathering",
+      "phase": "night",
+      "space": "table",
+      "description": "Take a break, visit the quiet area or let the previous performance settle. Nearby installation speakers pause around the main concerts to keep the listening field clear.",
+      "idea": "Intervals make attention sustainable across the night."
+    },
+    {
+      "id": "orchestra",
+      "time": "21:00",
+      "end": "22:00",
+      "title": "An orchestra of living inputs",
+      "artist": "Masterplants Orchestra",
+      "type": "performance",
+      "phase": "night",
+      "space": "grove",
+      "description": "Several plant channels are introduced individually and then layered. Electronic instruments distribute their activity across registers and the surrounding speaker array.",
+      "idea": "Follow one line as it joins others. Differences in event density and register produce a changing ensemble texture.",
+      "artists": [
+        "masterplants"
+      ]
+    },
+    {
+      "id": "interval2",
+      "time": "22:00",
+      "end": "22:30",
+      "title": "Return to the grove",
+      "artist": "Interval and changeover",
+      "type": "gathering",
+      "phase": "night",
+      "space": "table",
+      "description": "A half-hour interval leaves time to stretch, rest or visit the headphone installation before adotj’s solo.",
+      "idea": "Listening can include stepping away and returning."
+    },
+    {
+      "id": "solo",
+      "time": "22:30",
+      "end": "23:30",
+      "title": "Between Leaf and Circuit",
+      "artist": "adotj · solo BECA and synthesizers",
+      "type": "performance",
+      "phase": "night",
+      "space": "grove",
+      "description": "BECA, synthesizers and MIDI controllers make the performer’s framework audible. Incoming plant data generates patterns within chosen pitch and rhythmic settings, while adotj shapes timbre and musical structure in real time.",
+      "idea": "Listen for changes in scale, register, tempo and density. A generative sequence can unfold within deliberately composed conditions.",
+      "artists": [
+        "adotj"
+      ]
+    },
+    {
+      "id": "interval3",
+      "time": "23:30",
+      "end": "00:00",
+      "title": "Crossing midnight",
+      "artist": "Interval and changeover",
+      "type": "gathering",
+      "phase": "night",
+      "space": "table",
+      "description": "The final evening changeover prepares an open-ended electronic set. There is no requirement to stay awake: the rest area remains available.",
+      "idea": "The audience chooses how to inhabit the festival’s duration."
+    },
+    {
+      "id": "plants-dance",
+      "time": "00:00",
+      "end": "01:15",
+      "title": "Plants Can Dance",
+      "artist": "Brian d’Souza",
+      "type": "performance",
+      "phase": "night",
+      "space": "grove",
+      "description": "Biodata and modular synthesis open an electronic space after midnight. The performance is free to pursue rhythm, sparse gestures or a dense sound field as its system unfolds.",
+      "idea": "Repetition may establish a pulse; variation may loosen it. The set’s direction remains a live musical discovery.",
+      "artists": [
+        "brian"
+      ]
+    },
+    {
+      "id": "night-nursery",
+      "time": "01:15",
+      "end": "Pre-dawn",
+      "title": "Night Nursery",
+      "artist": "Biosis · continuing BECA station · optional rest",
+      "type": "installation",
+      "phase": "night",
+      "space": "nursery",
+      "description": "Main-stage amplification rests. Biosis’s proposed installation and a fixed-mapping BECA station continue on headphones. Visit briefly, stay longer or sleep in the separate quiet area.",
+      "idea": "Returning to the same mapping offers a way to compare changing material over time, without claiming every change has a single biological cause.",
+      "artists": [
+        "biosis",
+        "adotj"
+      ]
+    },
+    {
+      "id": "dawn",
+      "time": "Sunrise",
+      "end": "±45 min",
+      "title": "First Light",
+      "artist": "Anoushka Shankar × adotj",
+      "type": "performance",
+      "phase": "dawn",
+      "space": "grove",
+      "description": "A new jugalbandi for sitar, BECA and plants begins approximately 45 minutes before sunrise and continues into daylight. The performers agree pitch material and a tonal reference, then discover the exchange through melodic response, sustained resonance and silence.",
+      "idea": "A selected scale supplies pitch resources. Sitar phrasing and ornamentation remain expressive decisions. BECA’s mapping stays stable for part of the set, allowing attention to incoming variation around dawn.",
+      "artists": [
+        "anoushka",
+        "adotj"
+      ]
+    },
+    {
+      "id": "breakfast",
+      "time": "After set",
+      "end": "08:00",
+      "title": "Stay for breakfast",
+      "artist": "A shared morning",
+      "type": "gathering",
+      "phase": "dawn",
+      "space": "table",
+      "description": "Gather once more as the projections fade and the actual leaves become visible. Share observations, revisit a station or simply eat together before leaving.",
+      "idea": "The closing experience continues through the attention and conversation you carry away."
+    }
+  ],
+  "phases": {
+    "afternoon": {
+      "number": "01",
+      "title": "Begin with<br>curiosity.",
+      "time": "14:00—17:00 / DAY 01",
+      "text": "Learn how a living input becomes musical material. Follow an environmental listening walk, enter the Leaf Library and try BECA’s musical framework for yourself.",
+      "events": [
+        [
+          "14:00",
+          "Environmental listening"
+        ],
+        [
+          "14:30",
+          "The Leaf Library"
+        ],
+        [
+          "15:30",
+          "BECA workshop"
+        ]
+      ],
+      "event": "workshop"
+    },
+    "twilight": {
+      "number": "02",
+      "title": "Find a shared<br>language.",
+      "time": "17:00—20:30 / DAY 01",
+      "text": "Acoustic instruments and voice join the electronic world. Stay through a shared meal and the first of adotj’s two plant–human collaborations.",
+      "events": [
+        [
+          "17:00",
+          "Modern Biology + acoustic guest"
+        ],
+        [
+          "17:50",
+          "Wild Anima"
+        ],
+        [
+          "19:30",
+          "adotj × Manganiyar musicians"
+        ]
+      ],
+      "event": "roots"
+    },
+    "night": {
+      "number": "03",
+      "title": "Let the night<br>unfold.",
+      "time": "20:30—PRE-DAWN / DAY 01 → 02",
+      "text": "Several plant voices become an orchestra. BECA takes a solo turn. A late-night electronic encounter gives way to intimate installations and space to sleep.",
+      "events": [
+        [
+          "21:00",
+          "Masterplants Orchestra"
+        ],
+        [
+          "22:30",
+          "adotj solo"
+        ],
+        [
+          "00:00",
+          "Brian d’Souza"
+        ]
+      ],
+      "event": "solo"
+    },
+    "dawn": {
+      "number": "04",
+      "title": "Meet the<br>first light.",
+      "time": "SUNRISE—08:00 / DAY 02",
+      "text": "Gather before dawn for a jugalbandi between sitar, BECA and plants. As daylight returns, the projections give way to the foliage itself. Breakfast follows.",
+      "events": [
+        [
+          "Dawn",
+          "Anoushka Shankar × adotj"
+        ],
+        [
+          "After",
+          "Breakfast and conversation"
+        ]
+      ],
+      "event": "dawn"
+    }
+  },
+  "spaces": {
+    "grove": {
+      "number": "01",
+      "name": "The Listening Grove",
+      "type": "MAIN PERFORMANCE SPACE",
+      "text": "Musicians, listeners and plants share ground level. Small speaker arrays surround the audience, leaving room for the site’s existing sounds.",
+      "access": "Seated listening, chairs with backs and clear accessible routes are included in the proposal."
+    },
+    "nursery": {
+      "number": "02",
+      "name": "The Signal Nursery",
+      "type": "WORKSHOP / INSTALLATIONS",
+      "text": "Try BECA, visit Mileece’s proposed Leaf Room and return to the continuing plant stations. Headphones carry the experience through the deepest hours.",
+      "access": "Small-group sessions, seated workstations and an optional hands-off way to participate."
+    },
+    "library": {
+      "number": "03",
+      "name": "The Leaf Library",
+      "type": "SHADED RECORDED LISTENING",
+      "text": "A place for Garson, Fujieda and contemporary plant musicians. Listening prompts help connect each recording with the festival’s live practices.",
+      "access": "Headphone listening and shared hosted sessions, with printed material available."
+    },
+    "table": {
+      "number": "04",
+      "name": "The Common Table",
+      "type": "MEALS / CONVERSATION",
+      "text": "An unhurried gathering place for dinner, intervals and breakfast. Food and conversation give the overnight programme its social rhythm.",
+      "access": "Shaded seating and step-free circulation are included in the festival design."
+    },
+    "camp": {
+      "number": "05",
+      "name": "The Quiet Camp",
+      "type": "REST / OVERNIGHT STAY",
+      "text": "A separate area to sleep or take a break from amplified sound. Return before first light when you are ready; the festival welcomes different listening rhythms.",
+      "access": "Quiet sheltered rest spaces would be provided alongside accessible overnight facilities."
+    }
+  },
+  "records": [
+    {
+      "id": "garson",
+      "icon": "1976",
+      "label": "MUSIC FOR PLANTS",
+      "name": "Mort Garson",
+      "title": "Mother Earth’s Plantasia",
+      "text": "Melodic Moog compositions imagine plants as listeners. Hear “Plantasia” and “Symphony for a Spider Plant” in the hosted session.",
+      "listen": "https://mortgarson.bandcamp.com/album/mother-earths-plantasia",
+      "media": [
+        "bandcamp",
+        "album=1251308296"
+      ],
+      "caption": "Mother Earth’s Plantasia. Original release 1976; official Sacred Bones reissue.",
+      "playerTitle": "Mother Earth’s Plantasia",
+      "sourceRefs": [
+        21
+      ]
+    },
+    {
+      "id": "fujieda",
+      "icon": "p → ♩",
+      "label": "COMPOSITION FROM MEASUREMENTS",
+      "name": "Mamoru Fujieda",
+      "title": "Patterns of Plants",
+      "text": "Plant-derived patterns become composed acoustic miniatures. Sarah Cahill’s piano brings the shaping of that material into focus.",
+      "listen": "https://www.youtube.com/watch?v=soKGLdWlRpc",
+      "media": [
+        "youtube",
+        "soKGLdWlRpc"
+      ],
+      "caption": "Sarah Cahill plays Pattern B from the Seventh Collection, linked by Pinna Records.",
+      "playerTitle": "Patterns of Plants / Seventh Collection, Pattern B",
+      "source": "https://www.pinnarecords.com/products/530282-mamoru-fujieda-patterns-of-plants-sarah-cahill-piano",
+      "sourceRefs": [
+        3,
+        22
+      ]
+    },
+    {
+      "id": "plantland",
+      "icon": "[ : : ]",
+      "label": "Contemporary plant music / live radio",
+      "name": "Plantland Radio",
+      "title": "A radio platform by Masterplants Orchestra",
+      "text": "Plantland Radio was founded by Masterplants Orchestra / Tritone Crisantemo. Its directory connects Biosis, Wild Anima, Tom Iddan and other plant-music practices. The proposed Leaf Library would draw artist-approved excerpts from this community.",
+      "listen": "https://www.plantlandradio.com/",
+      "media": [
+        "radio",
+        "https://radio.plantlandradio.com/public/plantland_radio/embed"
+      ],
+      "caption": "The official Plantland Radio player. An existing broadcast, separate from the hypothetical festival programme.",
+      "playerTitle": "Plantland Radio / live broadcast",
+      "source": "https://www.plantlandradio.com/artists",
+      "sourceRefs": [
+        4,
+        23
+      ]
+    },
+    {
+      "id": "tom",
+      "icon": "[ : : ]",
+      "label": "Wider catalogue / listening reference",
+      "name": "Tom Iddan / Tito the Wize",
+      "title": "An artist in the Plantland directory",
+      "text": "Plantland lists Tom Iddan’s practice with percussion, field recordings and plant inputs. The linked Tito the Wize catalogue introduces the artist; the preview is not confirmed as a plant-derived track. Festival excerpts would be selected with the artist.",
+      "listen": "https://open.spotify.com/artist/6Ws7Sc1hQEWOHtmhQEaS5l",
+      "media": [
+        "spotify",
+        "artist/6Ws7Sc1hQEWOHtmhQEaS5l"
+      ],
+      "caption": "Tito the Wize — Jabulani. Existing wider-catalogue preview, not an identified plant-music selection.",
+      "preview": {
+        "url": "https://p.scdn.co/mp3-preview/73844041a4f7b4b12f2dc4fbb1d38b7a68ef8e14",
+        "title": "Jabulani",
+        "artist": "Tito the Wize",
+        "source": "https://open.spotify.com/track/2Xzn6PmH3PM5wgY5dhDnnr",
+        "verified": "2026-11-02"
+      },
+      "playerTitle": "Jabulani",
+      "source": "https://www.plantlandradio.com/artists",
+      "sourceRefs": [
+        4,
+        25
+      ]
+    }
+  ],
+  "sources": [
+    [
+      "Music from Plant Biosignals — Miller and Cox, Music Theory Online (2024)",
+      "https://mtosmt.org/issues/mto.24.30.1/mto.24.30.1.millercox.html"
+    ],
+    [
+      "Mort Garson — Mother Earth’s Plantasia, Sacred Bones Records",
+      "https://www.sacredbonesrecords.com/products/sbr3030-mort-garson-mother-earths-plantasia"
+    ],
+    [
+      "Mamoru Fujieda — Patterns of Plants, Sarah Cahill, Pinna Records",
+      "https://www.pinnarecords.com/products/530282-mamoru-fujieda-patterns-of-plants-sarah-cahill-piano"
+    ],
+    [
+      "Plantland Radio — Artist Sanctuary; Masterplants Orchestra / Tritone Crisantemo identified as founder",
+      "https://www.plantlandradio.com/artists"
+    ],
+    [
+      "Modern Biology — In Brussels with Moss and a Clarinet (7 May 2026)",
+      "https://modernbiology.substack.com/p/in-brussels-with-moss-and-a-clarinet"
+    ],
+    [
+      "Masterplants Orchestra — concert practice and multi-plant system",
+      "https://www.masterplants.net/orchestra"
+    ],
+    [
+      "Mileece — PiP’s Plant Parlour",
+      "https://www.mileece.is/pipsplantparlour"
+    ],
+    [
+      "Brian d’Souza — Plants Can Dance",
+      "https://www.briandsouza.in/plants-can-dance"
+    ],
+    [
+      "Jungli — venue information",
+      "https://junglithenomad.com/press-kit/"
+    ],
+    [
+      "Anoushka Shankar — biography",
+      "https://www.anoushkashankar.com/biography"
+    ],
+    [
+      "The Manganiyar Seduction — Amarrass Records; listening reference",
+      "https://amarrass.bandcamp.com/album/the-manganiyar-seduction-2"
+    ],
+    [
+      "Roysten Abel Productions — The Manganiyar Seduction; existing production, separate from the proposed ensemble",
+      "https://roystenabel.co/the-manganiyar-seduction/"
+    ],
+    [
+      "adotj.music — correct Spotify artist page, supplied by Anshul Jain",
+      "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx"
+    ],
+    [
+      "Anoushka Shankar — Chapter II: How Dark It Is Before Dawn; existing recording",
+      "https://open.spotify.com/album/3PtdHn0NDmOUPRNmRsuPfN"
+    ],
+    [
+      "Modern Biology — existing SoundCloud catalogue",
+      "https://soundcloud.com/modernbiology"
+    ],
+    [
+      "Masterplants Orchestra — Live in the Open Temple; linked by the official concert page",
+      "https://www.youtube.com/watch?v=8JCZYlaUvUo"
+    ],
+    [
+      "Wild Anima — existing Spotify catalogue",
+      "https://open.spotify.com/artist/5hFivotCpgANmtLv4yx67u"
+    ],
+    [
+      "Brian d’Souza — 007: Brian d’Souza (Sunflowers), Auntie Flo / Music to Watch Seeds Grow By",
+      "https://auntieflo.bandcamp.com/album/007-brian-d-souza-sunflowers"
+    ],
+    [
+      "Mileece — existing SoundCloud catalogue",
+      "https://soundcloud.com/Mileece"
+    ],
+    [
+      "Biosis / René Roco — Wachuma & FM; existing recording",
+      "https://biosis.bandcamp.com/track/wachuma-fm"
+    ],
+    [
+      "Mort Garson — Mother Earth’s Plantasia; official Bandcamp release",
+      "https://mortgarson.bandcamp.com/album/mother-earths-plantasia"
+    ],
+    [
+      "Sarah Cahill — Fujieda, Seventh Collection, Pattern B; video linked by Pinna Records",
+      "https://www.youtube.com/watch?v=soKGLdWlRpc"
+    ],
+    [
+      "Plantland Radio — official station website",
+      "https://www.plantlandradio.com/"
+    ],
+    [
+      "Plantland Radio — official broadcast embed linked by the station website",
+      "https://radio.plantlandradio.com/public/plantland_radio/embed"
+    ],
+    [
+      "Tom Iddan / Tito the Wize — wider Spotify catalogue linked by Plantland; not all tracks established as plant music",
+      "https://open.spotify.com/artist/6Ws7Sc1hQEWOHtmhQEaS5l"
+    ],
+    [
+      "Linkin Park — official website; visual reference supplied by the curator",
+      "https://www.linkinpark.com/"
+    ],
+    [
+      "Sasuke Haraguchi — Discography; interaction reference supplied by the curator",
+      "https://sasukeharaguchi.com/discography/"
+    ],
+    [
+      "SoundCloud — official Widget API; playback and track metadata controls",
+      "https://developers.soundcloud.com/docs/api/html5-widget"
+    ],
+    [
+      "YouTube — official IFrame Player API; playback and state controls",
+      "https://developers.google.com/youtube/iframe_api_reference"
+    ],
+    [
+      "Google Maps — regional Dandeli view; no Jungli coordinates or festival pin",
+      "https://maps.google.com/maps?q=Dandeli%2C%20Karnataka%2C%20India&z=9&output=embed"
+    ],
+    [
+      "Google Fonts — Anton; SIL Open Font License",
+      "https://github.com/google/fonts/tree/main/ofl/anton"
+    ],
+    [
+      "Google Fonts — Space Grotesk; SIL Open Font License",
+      "https://github.com/google/fonts/tree/main/ofl/spacegrotesk"
+    ],
+    [
+      "adotj.music, fatty recording co. — Epipremnum Aureum; Spotify preview metadata",
+      "https://open.spotify.com/track/33bZcYkUnYpktLRq3YTrnF"
+    ],
+    [
+      "Anoushka Shankar — Pacifica; Spotify preview metadata",
+      "https://open.spotify.com/track/55VGEGacfrhX3o5sseRUCC"
+    ],
+    [
+      "Quiet Voices, Hélène Vogelsinger, Wild Anima — Quiet Voices of the Ether; Spotify preview metadata",
+      "https://open.spotify.com/track/5turAR3soIgE4bf1Fi3XcD"
+    ],
+    [
+      "Tito the Wize — Jabulani; Spotify preview metadata",
+      "https://open.spotify.com/track/2Xzn6PmH3PM5wgY5dhDnnr"
+    ]
+  ],
+  "verificationNote": "Sources and recording identities checked on 2 November 2026. Plantland Radio is credited to its founder Masterplants Orchestra / Tritone Crisantemo. Recorded examples are separate from proposed festival commissions; the Tito the Wize preview introduces a wider catalogue, not a confirmed plant-derived track. The downloadable booklet includes the full website reference list."
+}
