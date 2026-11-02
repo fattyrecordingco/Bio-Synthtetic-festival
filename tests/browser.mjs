@@ -21,10 +21,12 @@ try{
   assert.equal(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight+1),true);
   assert.deepEqual(external,[]);assert.equal(await page.locator('audio').getAttribute('src'),null);
  });
- await check('Artwork occupies roughly half the desktop height and its knob has a visible prompt',async()=>{
+ await check('Artwork spans most of the poster behind unchanged foreground typography',async()=>{
   const box=await page.locator('#sculpture').boundingBox();
-  assert.ok(box.height>=480&&box.height<=600,JSON.stringify(box));
-  assert.ok(box.width>=720,JSON.stringify(box));
+  assert.ok(box.height>=800,JSON.stringify(box));
+  assert.ok(box.width>=1290,JSON.stringify(box));
+  assert.equal(await page.locator('.title-block h1').evaluate(el=>getComputedStyle(el).fontSize),'100px');
+  assert.equal(await page.locator('.masthead nav button').first().evaluate(el=>getComputedStyle(el).fontSize),'12px');
   assert.match(await page.locator('#knob-hint').textContent(),/Twist the knob/);
   assert.equal(await page.locator('#time-dial').getAttribute('aria-describedby'),'knob-hint');
  });
@@ -177,10 +179,11 @@ try{
  });
  await check('Tablet, small-phone and landscape layouts fit without distortion or overflow',async()=>{
   const layout=await context.newPage();
-  for(const [width,height] of [[1440,900],[1280,720],[768,1024],[390,844],[360,640],[844,390]]){
+  for(const [width,height,titleSize] of [[1440,900,90],[1920,1080,108],[1280,720,72],[768,1024,76.8],[390,844,63.57],[360,640,58.68],[844,390,59.08],[568,360,39.76]]){
    await layout.setViewportSize({width,height});await layout.goto(url+'/');await layout.waitForSelector('html[data-ready="true"]');
-   const bounds=await layout.evaluate(()=>{const art=document.querySelector('#sculpture').getBoundingClientRect();return{width:innerWidth,height:innerHeight,pageWidth:document.documentElement.scrollWidth,pageHeight:document.documentElement.scrollHeight,ratio:art.width/art.height};});
+   const bounds=await layout.evaluate(()=>{const art=document.querySelector('#sculpture').getBoundingClientRect(),dial=document.querySelector('#time-dial').getBoundingClientRect();return{width:innerWidth,height:innerHeight,pageWidth:document.documentElement.scrollWidth,pageHeight:document.documentElement.scrollHeight,ratio:art.width/art.height,titleSize:parseFloat(getComputedStyle(document.querySelector('h1')).fontSize),dialVisible:dial.x>=0&&dial.y>=0&&dial.right<=innerWidth&&dial.bottom<=innerHeight,dialReachable:!!document.elementFromPoint(dial.x+dial.width/2,dial.y+dial.height/2)?.closest('#time-dial')};});
    assert.ok(bounds.pageWidth<=width,JSON.stringify(bounds));assert.ok(bounds.pageHeight<=height+1,JSON.stringify(bounds));assert.ok(Math.abs(bounds.ratio-1.5)<.002,JSON.stringify(bounds));
+   assert.ok(Math.abs(bounds.titleSize-titleSize)<.05,JSON.stringify(bounds));assert.ok(bounds.dialVisible&&bounds.dialReachable,JSON.stringify(bounds));
    await layout.locator('[data-panel="programme"]').click();assert.equal(await layout.locator('.event').count(),17);await layout.locator('#panel-close').click();
   }
   await layout.close();

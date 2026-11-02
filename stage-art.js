@@ -66,12 +66,28 @@ export function setArtTime(value,phase){
  });
 }
 export async function initializeArt(){
- const frame=document.querySelector('#art-frame'),object=document.querySelector('#art-object');
+ const frame=document.querySelector('#art-frame'),object=document.querySelector('#art-object'),poster=document.querySelector('.poster'),scene=document.querySelector('.scene');
  const fit=()=>{
-  const fittedWidth=Math.max(1,Math.min(frame.clientWidth*.98,(frame.clientHeight-22)*1.5,window.innerHeight*.6*1.5));
+  const bounds=poster.getBoundingClientRect(),space=scene.getBoundingClientRect();
+  const landscape=matchMedia('(max-height: 540px) and (min-aspect-ratio: 4/3)').matches;
+  const narrow=!landscape&&window.innerWidth<=600;
+  // The figure occupies the poster behind the type and artist rail. Only the
+  // knob catches pointers; transparent artwork areas leave foreground links free.
+  frame.style.top=(bounds.top-space.top)+'px';frame.style.height=bounds.height+'px';
+  let width=Math.min(window.innerWidth*.94,bounds.height*1.8);
+  if(narrow)width=bounds.height*1.32;
+  if(landscape)width=Math.min(space.width*1.35,bounds.height*1.5);
+  const fittedWidth=Math.max(1,width);
+  frame.style.left=landscape?'0px':(-space.left)+'px';frame.style.right=landscape?'0px':(space.right-window.innerWidth)+'px';
   object.style.width=fittedWidth+'px';object.style.height=fittedWidth/1.5+'px';
+  object.style.left=narrow?fittedWidth*.037+'px':'0px';
+  // Keep the large figure visible behind the title, then fade it before the
+  // portraits so foreground type and artist images retain their own contrast.
+  const titleDepth=space.top-bounds.top,sceneEnd=space.bottom-bounds.top;
+  const fadeIn=titleDepth+Math.min(110,space.height*.23),fadeOut=Math.max(fadeIn,sceneEnd-90);
+  frame.style.maskImage=`linear-gradient(#0003 0px,#0003 ${titleDepth}px,#000 ${fadeIn}px,#000 ${fadeOut}px,transparent ${sceneEnd+35}px)`;
  };
- const observer=new ResizeObserver(fit);observer.observe(frame);fit();
+ const observer=new ResizeObserver(fit);observer.observe(poster);observer.observe(scene);fit();
  const img=await image('assets/sculpture.webp'),canvas=document.querySelector('#sculpture'),source=surface(canvas.width,canvas.height),ctx=source.getContext('2d',{willReadFrequently:true});
  ctx.drawImage(img,0,0,source.width,source.height);sourcePixels=ctx.getImageData(0,0,source.width,source.height).data;renderSculpture();
  document.querySelector('#art-mode').addEventListener('click',event=>{ascii=!ascii;event.currentTarget.setAttribute('aria-pressed',String(ascii));renderSculpture();});

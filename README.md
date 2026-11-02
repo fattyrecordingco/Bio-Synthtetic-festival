@@ -31,7 +31,7 @@ Open http://localhost:4173/. Node 18+ is required; running the site needs no dep
 
 Edit festival details in `content/festival.json`, the note in `content/programme-note.txt`, and shared acknowledgements in `content/credits.json`. Image attribution is in `content/image-credits.json`; the sculpture generation record is in `content/artwork.json`. Hosting details live in `content/site.json`.
 
-The knob and time slider share state. Drag, touch or use arrow keys, Home/End and Page Up/Down. `[#]` switches between dithering and ASCII. Edit colour stops and gradient positions in `theme.js`; `styles.css` provides the initial palette and layout. Colour blends follow every time change, with a short easing period for jumps. Cached dither masks keep artwork and portraits in sync without rebuilding their patterns. Reduced motion disables the animated sweep and rotation while retaining the selected colours. Escape closes the reading panel.
+The knob and time slider share state. Drag, touch or use arrow keys, Home/End and Page Up/Down. `[#]` switches between dithering and ASCII. The artwork fills a layer behind the title and artist row; its size, fades and mobile crop are set in `stage-art.js`. Edit colour stops and gradient positions in `theme.js`; `styles.css` provides the initial palette and layout. Colour blends follow every time change, with a short easing period for jumps. Cached dither masks keep artwork and portraits in sync without rebuilding their patterns. Reduced motion disables the animated sweep and rotation while retaining the selected colours. Escape closes the reading panel.
 
 ## Booklet and submission
 

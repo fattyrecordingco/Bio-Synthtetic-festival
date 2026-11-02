@@ -35,6 +35,7 @@ img { display: block; max-width: 100%; }
   width: 100%; max-width: 1720px; height: 100svh; min-height: 560px; margin: auto;
   display: grid; grid-template-rows: auto minmax(0,1fr) auto;
   padding: 0 clamp(18px,4vw,64px) var(--dock-space);
+  overflow: clip;
 }
 .masthead { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); gap: 24px; }
 .brand { font-size: 12px; text-decoration: none; flex-shrink: 0; }
@@ -42,29 +43,29 @@ img { display: block; max-width: 100%; }
 .masthead nav { display: flex; align-items: center; gap: clamp(16px,2vw,30px); }
 .masthead nav button { padding: 8px 0; min-height: 44px; font-size: 12px; }
 .masthead nav > a { font-size: 26px; width: 36px; height: 44px; text-align: center; text-decoration: none; }
-.poster { min-width: 0; min-height: 0; display: grid; grid-template-rows: auto minmax(0,1fr) auto; }
-.title-block { min-width: 0; overflow: clip; padding-top: clamp(10px,1vh,14px); }
+.poster { position: relative; isolation: isolate; min-width: 0; min-height: 0; display: grid; grid-template-rows: auto minmax(0,1fr) auto; }
+.title-block { position: relative; z-index: 2; min-width: 0; overflow: clip; padding-top: clamp(10px,1vh,14px); text-shadow: 0 0 6px var(--bg),0 2px 20px var(--bg); pointer-events: none; }
 .title-block h1 { font: 400 clamp(56px,min(10vw,10svh),144px)/.98 Anton, Impact, sans-serif; letter-spacing: -.025em; white-space: nowrap; color: var(--accent); }
 .festival-caption { display: flex; justify-content: space-between; align-items: start; gap: 24px; font-size: 11px; margin-top: 10px; color: var(--quiet); }
 .festival-caption p:last-child { text-align: right; }
-.scene { position: relative; min-width: 0; min-height: 0; isolation: isolate; overflow: clip; }
-.art-frame { position: absolute; inset: 0; display: grid; place-items: center; }
+.scene { position: relative; z-index: 1; min-width: 0; min-height: 0; }
+.art-frame { position: absolute; inset: 0; display: grid; grid-template: minmax(0,1fr) / minmax(0,1fr); place-items: center; pointer-events: none; }
 .art-object {
   position: relative; width: 0; height: 0; flex: none;
   transform: rotate(var(--hand-turn,0deg)); transform-origin: 46.3% 45.8%;
   transition: transform .12s ease-out;
 }
 .art-object canvas { display: block; width: 100%; height: 100%; mask-image: linear-gradient(#000 0 85%,transparent); }
-.knob-control { position: absolute; left: 46.3%; top: 45.8%; width: 14%; aspect-ratio: 1; transform: translate(-50%,-50%); border-radius: 50%; cursor: grab; touch-action: none; }
+.knob-control { position: absolute; left: 46.3%; top: 45.8%; width: 14%; aspect-ratio: 1; transform: translate(-50%,-50%); border-radius: 50%; cursor: grab; touch-action: none; pointer-events: auto; }
 .knob-control:active { cursor: grabbing; }
 .knob-control:focus-visible { outline: 1px solid var(--accent); outline-offset: 8px; }
 .knob-tick { position: absolute; inset: 7%; border: 1px solid transparent; border-radius: 50%; transform: rotate(var(--dial-angle,-130deg)); }
 .knob-tick:before { content: ''; position: absolute; left: calc(50% - 1px); top: 0; width: 2px; height: 14%; background: var(--accent); }
-.scene-meta { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; font: 10px/1.5 'Courier New',monospace; color: var(--quiet); z-index: 2; pointer-events: none; }
+.scene-meta { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; font: 10px/1.5 'Courier New',monospace; color: var(--quiet); z-index: 2; pointer-events: none; text-shadow: 0 0 6px var(--bg),0 1px 14px var(--bg); }
 #scene-clock { font-size: 18px; color: var(--accent); }
 .scene-caption { position: absolute; right: 0; top: calc(50% - 22px); display: grid; place-items: center; min-width: 44px; min-height: 44px; font: 14px 'Courier New',monospace; color: var(--quiet); }
-.knob-hint { position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); font: 10px/1.5 'Courier New',monospace; color: var(--quiet); white-space: nowrap; pointer-events: none; }
-.artist-field { min-width: 0; padding: 8px 0 10px; border-top: 1px solid var(--line); }
+.knob-hint { position: absolute; z-index: 2; bottom: 9px; left: 50%; transform: translateX(-50%); font: 10px/1.5 'Courier New',monospace; color: var(--quiet); white-space: nowrap; pointer-events: none; text-shadow: 0 0 8px var(--bg); }
+.artist-field { position: relative; z-index: 2; min-width: 0; padding: 8px 0 10px; border-top: 1px solid var(--line); }
 .artist-field-heading { display: flex; align-items: center; justify-content: space-between; height: 28px; margin-bottom: 7px; font: 10px 'Courier New',monospace; color: var(--quiet); }
 .strip-controls { display: flex; gap: 8px; }
 .strip-controls[hidden] { display: none; }
@@ -75,9 +76,9 @@ img { display: block; max-width: 100%; }
 .artist-button canvas { display: block; width: 100%; max-width: 76px; aspect-ratio: 1; opacity: .85; }
 .artist-button:hover canvas, .artist-button[aria-pressed=true] canvas { opacity: 1; }
 .artist-button[aria-pressed=true]:before { content: '+'; position: absolute; top: 0; right: 0; z-index: 1; color: var(--accent); }
-.artist-button > span { font-size: 10px; line-height: 1.4; min-height: 28px; color: var(--quiet); }
+.artist-button > span { font-size: 10px; line-height: 1.4; min-height: 28px; color: var(--quiet); text-shadow: 0 0 8px var(--bg); }
 .artist-button:hover > span, .artist-button[aria-pressed=true] > span { color: var(--accent); }
-.footer { min-width: 0; padding: 5px 0 12px; }
+.footer { position: relative; z-index: 3; min-width: 0; padding: 5px 0 12px; }
 .time-track { display: flex; align-items: center; gap: 24px; font: 10px 'Courier New',monospace; }
 .time-track input { appearance: none; min-width: 0; width: 100%; height: 28px; margin: 0; background: transparent; cursor: ew-resize; }
 .time-track input::-webkit-slider-runnable-track { height: 1px; background: var(--quiet); }
@@ -124,9 +125,9 @@ body.has-player dialog { max-height: calc(100svh - 172px); }
   .festival-caption { font-size: 9px; line-height: 1.5; gap: 16px; margin-top: 12px; }
   .festival-caption p:first-child { max-width: 175px; }
   .festival-caption p:last-child { max-width: 135px; }
-  .scene-meta { top: 12px; transform: none; gap: 3px; font-size: 9px; }
+  .scene-meta { top: auto; bottom: 52px; transform: none; gap: 3px; font-size: 9px; }
   #scene-clock { font-size: 15px; }
-  .scene-caption { top: auto; bottom: 5px; }
+  .scene-caption { top: auto; bottom: 5px; left: 0; right: auto; }
   .artist-field { padding: 5px 0; }
   .artist-field-heading { margin-bottom: 6px; }
   .artist-strip { gap: 20px; }
