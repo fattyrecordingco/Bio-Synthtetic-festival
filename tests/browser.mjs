@@ -142,6 +142,7 @@ try{
  });
  await check('Collapsed music player leaves the footer usable',async()=>{
   await page.locator('.artist-button[data-artist="adotj"]').click();await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>document.querySelector('#preview-audio').error!==null);
   if(await page.locator('#player-drawer').isVisible())await page.locator('#player-expand').click();
   const footer=await page.locator('.footer').boundingBox(),player=await page.locator('#floating-player').boundingBox();
   assert.ok(footer.y+footer.height<=player.y,JSON.stringify({footer,player}));await page.locator('#player-close').click();

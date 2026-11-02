@@ -2,6 +2,7 @@
 const $ = selector => document.querySelector(selector);
 const audio = $('#preview-audio');
 let selection = null, controller = null, service = null, playing = false, generation = 0;
+let drawerUserControlled = false;
 const scripts = new Map();
 
 function loadScript(url) {
@@ -21,7 +22,9 @@ function setPlaying(value) {
   $('#music-toggle').title=value?'Pause recording':'Play recording';
   $('#floating-player').classList.toggle('is-playing',value);
 }
-function setDrawer(open) {
+function setDrawer(open,manual=false) {
+  if(manual)drawerUserControlled=true;
+  else if(drawerUserControlled)return;
   $('#player-drawer').hidden=!open;
   $('#player-expand').setAttribute('aria-expanded',String(open));
   $('#player-expand').setAttribute('aria-label',open?'Hide streaming player':'Show streaming player');
@@ -48,6 +51,7 @@ export async function playSelection(item) {
   if(!item)return;
   const token=++generation;
   clearMedia(); selection=item; service=item.media[0];
+  drawerUserControlled=false;
   $('#floating-player').hidden=false;
   document.body.classList.add('has-player');
   $('#music-toggle').hidden=false; $('#music-toggle').disabled=false;
@@ -126,7 +130,7 @@ $('#music-toggle').addEventListener('click',async()=>{
     else setDrawer(true);
   }catch{fallback('Press play in the recording source.');}
 });
-$('#player-expand').addEventListener('click',()=>setDrawer($('#player-drawer').hidden));
+$('#player-expand').addEventListener('click',()=>setDrawer($('#player-drawer').hidden,true));
 $('#player-close').addEventListener('click',()=>{
   ++generation; clearMedia();selection=null;$('#floating-player').hidden=true;
   document.body.classList.remove('has-player');
