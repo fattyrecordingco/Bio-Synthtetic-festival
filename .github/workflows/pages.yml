@@ -30,7 +30,10 @@ jobs:
         run: |
           node --check stage-ui.js
           node --check stage-art.js
+          node --check theme.js
           node --check player.js
+      - name: Check colour continuity and contrast
+        run: node tests/theme.mjs
       - name: Build the public website
         run: npm run build
       - name: Configure GitHub Pages

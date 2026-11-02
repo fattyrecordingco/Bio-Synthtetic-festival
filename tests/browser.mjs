@@ -57,7 +57,7 @@ try{
     });
     const canvas=document.querySelector('#sculpture'),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
     let sculpture;for(let i=0;i<pixels.length;i+=4)if(pixels[i+3]){sculpture=`${pixels[i]},${pixels[i+1]},${pixels[i+2]}`;break;}
-    return {expected:[rgb('--ink'),rgb('--bg')].sort(),ink:rgb('--ink'),portraits,sculpture};
+    return {expected:[rgb('--ink'),'0,0,0'].sort(),ink:rgb('--ink'),portraits,sculpture};
    });
    for(const portrait of result.portraits){assert.equal(portrait.phase,phase);assert.deepEqual(portrait.colors,result.expected);}
    assert.equal(result.sculpture,result.ink);palettes.push(result.ink);
@@ -192,6 +192,56 @@ try{
   const footer=await page.locator('.footer').boundingBox(),player=await page.locator('#floating-player').boundingBox();
   assert.ok(footer.y+footer.height<=player.y,JSON.stringify({footer,player}));await page.locator('#player-close').click();
  });
+ const skyContext=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'no-preference'});
+ const sky=await skyContext.newPage();sky.on('pageerror',e=>errors.push(e.message));
+ await sky.goto(url+'/');await sky.waitForSelector('html[data-ready="true"]');
+ await check('Large time jumps blend through intermediate colours and moving gradients',async()=>{
+  await sky.screenshot({path:screenshot('sky-afternoon.png')});
+  const result=await sky.evaluate(async()=>{
+   const root=document.documentElement,range=document.querySelector('#journey-time');
+   const snapshot=()=>{
+    const style=getComputedStyle(root),canvas=document.querySelector('[data-portrait]'),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+    let portrait;for(let i=0;i<pixels.length;i+=4)if(pixels[i+3]){portrait=[pixels[i],pixels[i+1],pixels[i+2]].map(n=>n.toString(16).padStart(2,'0')).join('');break;}
+    return {bg:style.getPropertyValue('--bg').trim(),ink:style.getPropertyValue('--ink').trim(),portrait:'#'+portrait,gradient:getComputedStyle(document.body).backgroundImage};
+   };
+   const before=snapshot();range.value=1080;range.dispatchEvent(new Event('input',{bubbles:true}));const immediate=snapshot(),samples=[];
+   const started=performance.now();let last=started;
+   await new Promise(resolve=>{function sample(now){if(now-last>=65){last=now;samples.push(snapshot());}if(now-started<380)requestAnimationFrame(sample);else resolve();}requestAnimationFrame(sample);});
+   return {before,immediate,samples};
+  });
+  assert.equal(result.immediate.bg,result.before.bg);
+  assert.ok(new Set(result.samples.map(s=>s.bg)).size>=3,JSON.stringify(result));
+  assert.ok(new Set(result.samples.map(s=>s.gradient)).size>=3);
+  for(const sample of result.samples){assert.equal(sample.portrait,sample.ink);assert.notEqual(sample.bg,'#303923');}
+  await sky.waitForFunction(()=>document.documentElement.dataset.themeMoving==='false');
+  assert.equal(await sky.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()),'#303923');
+  await sky.screenshot({path:screenshot('sky-sunrise.png')});
+ });
+ await check('Reversing the dial retargets from the displayed colours without snapping',async()=>{
+  const result=await sky.evaluate(async()=>{
+   const range=document.querySelector('#journey-time'),bg=()=>getComputedStyle(document.documentElement).getPropertyValue('--bg');
+   range.value=0;range.dispatchEvent(new Event('input',{bubbles:true}));
+   await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+   const before=bg();range.value=600;range.dispatchEvent(new Event('input',{bubbles:true}));return {before,after:bg()};
+  });
+  assert.equal(result.before,result.after);
+  await sky.waitForFunction(()=>document.documentElement.dataset.themeMoving==='false');
+  assert.equal(await sky.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()),'#070e0d');
+ });
+ await check('Reduced motion cancels an active sweep; colours still vary within a single phase',async()=>{
+  await sky.locator('#journey-time').evaluate(el=>{el.value=1080;el.dispatchEvent(new Event('input',{bubbles:true}));});
+  await sky.emulateMedia({reducedMotion:'reduce'});
+  await sky.waitForFunction(()=>document.documentElement.dataset.themeMoving==='false');
+  assert.equal(await sky.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()),'#303923');
+  const result=await sky.evaluate(()=>{
+   const range=document.querySelector('#journey-time'),bg=()=>getComputedStyle(document.documentElement).getPropertyValue('--bg');
+   range.value=0;range.dispatchEvent(new Event('input',{bubbles:true}));const before=bg();
+   range.value=120;range.dispatchEvent(new Event('input',{bubbles:true}));
+   return {before,after:bg(),phase:document.documentElement.dataset.phase,moving:document.documentElement.dataset.themeMoving,transform:getComputedStyle(document.querySelector('#art-object')).transform};
+  });
+  assert.notEqual(result.before,result.after);assert.equal(result.phase,'afternoon');assert.equal(result.moving,'false');assert.equal(result.transform,'none');
+ });
+ await skyContext.close();
  assert.deepEqual(errors,[]);await writeFile(new URL('../test-results/browser-checks.json',import.meta.url),JSON.stringify({checks:results,errors},null,2));console.log(results.length+' browser checks passed.');
  await mobileContext.close();await context.close();
 }finally{await browser.close();}

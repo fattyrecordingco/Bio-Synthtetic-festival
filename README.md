@@ -18,6 +18,7 @@ Open http://localhost:4173/. Node 18+ is required; running the site needs no dep
 | --- | --- |
 | `index.html`, `styles.css` | Website structure, layout and theme colours |
 | `stage-ui.js`, `stage-art.js`, `player.js` | Interactions, artwork and music player |
+| `theme.js` | Continuous colour stops and gradient movement through the night |
 | `content/` | Editable artists, schedule, programme note, references and credits |
 | `assets/` | Published images, fonts, font licences and downloadable booklet |
 | `docs/assignment-check.txt` | Check against the assignment brief |
@@ -30,7 +31,7 @@ Open http://localhost:4173/. Node 18+ is required; running the site needs no dep
 
 Edit festival details in `content/festival.json`, the note in `content/programme-note.txt`, and shared acknowledgements in `content/credits.json`. Image attribution is in `content/image-credits.json`; the sculpture generation record is in `content/artwork.json`. Hosting details live in `content/site.json`.
 
-The knob and time slider share state. Drag, touch or use arrow keys, Home/End and Page Up/Down. `[#]` switches between dithering and ASCII. Artwork and artist portraits follow the theme colours defined in `styles.css`. Reduced motion disables rotation. Escape closes the reading panel.
+The knob and time slider share state. Drag, touch or use arrow keys, Home/End and Page Up/Down. `[#]` switches between dithering and ASCII. Edit colour stops and gradient positions in `theme.js`; `styles.css` provides the initial palette and layout. Colour blends follow every time change, with a short easing period for jumps. Cached dither masks keep artwork and portraits in sync without rebuilding their patterns. Reduced motion disables the animated sweep and rotation while retaining the selected colours. Escape closes the reading panel.
 
 ## Booklet and submission
 

@@ -10,7 +10,7 @@
   "description": "Local Bio-synthetic festival programme",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "test": "python3 tests/content.py",
+    "test": "python3 tests/content.py && node tests/theme.mjs",
     "test:browser": "node tests/browser.mjs",
     "build": "node scripts/build.mjs"
   },

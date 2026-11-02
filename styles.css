@@ -3,15 +3,20 @@
 :root {
   --bg: #091b12; --ink: #d5dfac; --quiet: #a5b593; --accent: #e3fa80;
   --line: #3d543a; --panel: #10261a; --dock-space: 0px;
+  --sky-top: #08150f; --sky-horizon: #24452a; --sky-glow: #294827;
+  --glow-x: 12%; --glow-y: 95%; --sky-angle: 165deg;
   color-scheme: dark; font-family: Space, 'Trebuchet MS', sans-serif;
   color: var(--ink); background: var(--bg);
 }
-html[data-phase=night] { --bg: #070e0d; --ink: #bccfb3; --accent: #dbe8cb; --quiet: #a1b49d; --panel: #12201b; }
-html[data-phase=twilight] { --bg: #182318; --ink: #dcdfae; --accent: #ecda91; --panel: #242c1c; }
-html[data-phase=dawn] { --bg: #303923; --ink: #f3edbc; --accent: #fff1ab; --quiet: #c9cba9; --panel: #283621; }
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; scrollbar-color: #64764c var(--bg); }
-body { font-size: 14px; line-height: 1.6; }
+body {
+  font-size: 14px; line-height: 1.6; min-height: 100svh;
+  background:
+    radial-gradient(ellipse 100% 85% at var(--glow-x) var(--glow-y),var(--sky-glow),transparent 72%),
+    linear-gradient(var(--sky-angle),var(--sky-top),var(--bg) 48%,var(--sky-horizon));
+  background-attachment: fixed;
+}
 body.has-player { --dock-space: 78px; }
 button, input { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; }
@@ -75,8 +80,8 @@ img { display: block; max-width: 100%; }
 .footer { min-width: 0; padding: 5px 0 12px; }
 .time-track { display: flex; align-items: center; gap: 24px; font: 10px 'Courier New',monospace; }
 .time-track input { appearance: none; min-width: 0; width: 100%; height: 28px; margin: 0; background: transparent; cursor: ew-resize; }
-.time-track input::-webkit-slider-runnable-track { height: 1px; background: #78935b; }
-.time-track input::-moz-range-track { height: 1px; background: #78935b; }
+.time-track input::-webkit-slider-runnable-track { height: 1px; background: var(--quiet); }
+.time-track input::-moz-range-track { height: 1px; background: var(--quiet); }
 .time-track input::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; border: 0; border-radius: 50%; background: var(--accent); margin-top: -5.5px; }
 .time-track input::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: var(--accent); }
 .footer-line { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 9px; color: var(--quiet); }
