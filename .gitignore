@@ -5,3 +5,8 @@ __pycache__/
 dist/
 assets/raw/
 assets/sculpture-source.png
+
+# Original assignment handouts and the previous local Sites checkout.
+/Bio-synthetic_Curation_Assignment.docx
+/Bio-synthetic_Editable.html
+/bio-synthetic/

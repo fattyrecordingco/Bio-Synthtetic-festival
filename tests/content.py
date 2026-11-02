@@ -59,7 +59,7 @@ class FestivalContent(unittest.TestCase):
                 self.assertIn(url, targets)
             external = {url for url in targets if url and url.startswith('https://')}
             source_urls = {url for _,url in DATA['sources']}
-            companion = {'https://bio-synthetic-first-light.fatty-record-8662.chatgpt.site'}
+            companion = {json.loads((ROOT / 'content/site.json').read_text())['url']}
             self.assertEqual(external - source_urls - companion,set())
             paragraphs = ET.fromstring(archive.read('word/document.xml'))
             all_text = ''.join(paragraphs.itertext())

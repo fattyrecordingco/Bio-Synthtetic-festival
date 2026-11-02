@@ -69,3 +69,10 @@ Short-edition interface and image credits
   Artist photographs and logos are credited to official artist/production pages
   in content/image-credits.json and the booklet. Their display crops and dithering
   do not identify the unconfirmed Manganiyar festival ensemble.
+
+GitHub Pages migration
+  The canonical companion URL is now recorded in content/site.json and used
+  by the booklet generator. The original 917-word note remains unchanged.
+  Root-relative project assets are avoided; GitHub Pages project-path loading
+  is checked under /Bio-Synthtetic-festival/. Source and publication use the
+  shared GitHub repository; the earlier local checkout is retained as a backup.

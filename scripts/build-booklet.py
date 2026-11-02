@@ -15,7 +15,7 @@ R = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
 REL = 'http://schemas.openxmlformats.org/package/2006/relationships'
 parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=Path, default=ROOT / 'content/booklet-template.docx')
-parser.add_argument('--site-url', default='https://bio-synthetic-first-light.fatty-record-8662.chatgpt.site')
+parser.add_argument('--site-url', default=json.loads((ROOT / 'content/site.json').read_text())['url'])
 args = parser.parse_args()
 data = json.loads((ROOT / 'content/festival.json').read_text())
 note = (ROOT / 'content/programme-note.txt').read_text()

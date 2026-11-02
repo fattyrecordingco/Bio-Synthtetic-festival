@@ -46,6 +46,14 @@ function renderSculpture(){
 }
 export function setArtTime(value,phase){const changed=currentPhase!==phase;currentPhase=phase;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.style.setProperty('--hand-turn',`${(value/1080-.5)*5}deg`);if(changed)renderSculpture();}
 export async function initializeArt(){
+ const frame=document.querySelector('#art-frame'),object=document.querySelector('#art-object');
+ const fit=()=>{
+  const width=frame.clientWidth,height=frame.clientHeight;
+  const margin = window.innerWidth <= 600 ? 0.98 : 0.84;
+  const fittedWidth=Math.max(1,Math.min(width*margin,height*1.5));
+  object.style.width=fittedWidth+'px';object.style.height=fittedWidth/1.5+'px';
+ };
+ const observer=new ResizeObserver(fit);observer.observe(frame);fit();
  const img=await image('assets/sculpture.webp'),canvas=document.querySelector('#sculpture'),ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0,canvas.width,canvas.height);sourcePixels=ctx.getImageData(0,0,canvas.width,canvas.height).data;renderSculpture();
  document.querySelector('#art-mode').addEventListener('click',event=>{ascii=!ascii;event.currentTarget.setAttribute('aria-pressed',String(ascii));renderSculpture();});
 }

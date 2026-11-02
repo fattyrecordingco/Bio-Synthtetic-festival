@@ -49,6 +49,7 @@ export async function playSelection(item) {
   const token=++generation;
   clearMedia(); selection=item; service=item.media[0];
   $('#floating-player').hidden=false;
+  document.body.classList.add('has-player');
   $('#music-toggle').hidden=false; $('#music-toggle').disabled=false;
   $('#track-name').textContent=item.playerTitle || item.title || item.name;
   $('#track-artist').textContent=item.preview?.artist || item.name;
@@ -128,6 +129,7 @@ $('#music-toggle').addEventListener('click',async()=>{
 $('#player-expand').addEventListener('click',()=>setDrawer($('#player-drawer').hidden));
 $('#player-close').addEventListener('click',()=>{
   ++generation; clearMedia();selection=null;$('#floating-player').hidden=true;
+  document.body.classList.remove('has-player');
   const returnTo=document.querySelector('.artist-button[aria-pressed="true"]')||document.querySelector('#artists h2');
   if(returnTo){returnTo.setAttribute('tabindex',returnTo.tagName==='BUTTON'?'0':'-1');returnTo.focus({preventScroll:true});}
 });

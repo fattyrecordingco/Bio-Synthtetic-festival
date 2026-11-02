@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
-const url=process.env.TEST_URL||'http://127.0.0.1:4173';
+const url=(process.env.TEST_URL||'http://127.0.0.1:4173').replace(/\/+$/,'');
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 await mkdir(new URL('../test-results/',import.meta.url),{recursive:true});
 const results=[],errors=[];
@@ -13,7 +13,7 @@ try{
  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));const external=[];
  page.on('request',r=>{if(!r.url().startsWith(url)&&!r.url().startsWith('data:'))external.push(r.url());});
- await page.goto(url);await page.waitForSelector('html[data-ready="true"]');
+ await page.goto(url+'/');await page.waitForSelector('html[data-ready="true"]');
  await check('One-screen edition, all nine real portraits loaded, no initial external requests or audio',async()=>{
   assert.equal(await page.locator('.artist-button').count(),9);
   assert.equal(await page.locator('#artist-strip canvas[data-loaded="true"]').count(),9);
@@ -118,7 +118,7 @@ try{
   await page.screenshot({path:screenshot('desktop.png')});
  });
  const mobileContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
- const mobile=await mobileContext.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.goto(url);await mobile.waitForSelector('html[data-ready="true"]');
+ const mobile=await mobileContext.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.goto(url+'/');await mobile.waitForSelector('html[data-ready="true"]');
  await check('Mobile remains one screen, portrait strip scrolls and every artist is reachable',async()=>{
   assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.documentElement.scrollHeight<=innerHeight+1),true);
   const before=await mobile.locator('#artist-strip').evaluate(e=>e.scrollLeft);await mobile.locator('#artists-next').tap();assert.ok(await mobile.locator('#artist-strip').evaluate(e=>e.scrollLeft)>before);
@@ -129,6 +129,22 @@ try{
   await mobile.locator('[data-panel="programme"]').tap();assert.equal(await mobile.locator('.event').count(),17);await mobile.locator('#panel-close').tap();assert.equal(await mobile.locator('#info-panel').isVisible(),false);
   const audit=await new AxeBuilder({page:mobile}).analyze();await writeFile(new URL('../test-results/axe-mobile.json',import.meta.url),JSON.stringify(audit.violations,null,2));assert.deepEqual(audit.violations.map(v=>v.id),[]);
   await mobile.screenshot({path:screenshot('mobile.png')});
+ });
+ await check('Tablet, small-phone and landscape layouts fit without distortion or overflow',async()=>{
+  const layout=await context.newPage();
+  for(const [width,height] of [[1440,900],[1280,720],[768,1024],[390,844],[360,640],[844,390]]){
+   await layout.setViewportSize({width,height});await layout.goto(url+'/');await layout.waitForSelector('html[data-ready="true"]');
+   const bounds=await layout.evaluate(()=>{const art=document.querySelector('#sculpture').getBoundingClientRect();return{width:innerWidth,height:innerHeight,pageWidth:document.documentElement.scrollWidth,pageHeight:document.documentElement.scrollHeight,ratio:art.width/art.height};});
+   assert.ok(bounds.pageWidth<=width,JSON.stringify(bounds));assert.ok(bounds.pageHeight<=height+1,JSON.stringify(bounds));assert.ok(Math.abs(bounds.ratio-1.5)<.002,JSON.stringify(bounds));
+   await layout.locator('[data-panel="programme"]').click();assert.equal(await layout.locator('.event').count(),17);await layout.locator('#panel-close').click();
+  }
+  await layout.close();
+ });
+ await check('Collapsed music player leaves the footer usable',async()=>{
+  await page.locator('.artist-button[data-artist="adotj"]').click();await page.keyboard.press('Escape');
+  if(await page.locator('#player-drawer').isVisible())await page.locator('#player-expand').click();
+  const footer=await page.locator('.footer').boundingBox(),player=await page.locator('#floating-player').boundingBox();
+  assert.ok(footer.y+footer.height<=player.y,JSON.stringify({footer,player}));await page.locator('#player-close').click();
  });
  assert.deepEqual(errors,[]);await writeFile(new URL('../test-results/browser-checks.json',import.meta.url),JSON.stringify({checks:results,errors},null,2));console.log(results.length+' browser checks passed.');
  await mobileContext.close();await context.close();

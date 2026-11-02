@@ -1,7 +1,7 @@
 BIO-SYNTHETIC / short interactive edition
 
 Public website
-  https://bio-synthetic-first-light.fatty-record-8662.chatgpt.site
+  https://fattyrecordingco.github.io/Bio-Synthtetic-festival/
 Source
   https://github.com/fattyrecordingco/Bio-Synthtetic-festival
 
@@ -62,14 +62,28 @@ Checks and build (development dependencies only)
   npx playwright install chromium
   npm test
   Start the local server, then: npm run test:browser
+  Project-path check: SITE_BASE_PATH=/Bio-Synthtetic-festival
+  STATIC_DIRECTORY=dist PORT=4174 npm start
+  Then use TEST_URL=http://localhost:4174/Bio-Synthtetic-festival/
+  npm run test:browser (join the environment values on one command line).
   npm run build
   dist/ contains only the public website and files. Raw images, templates and
   test tools are excluded. Linux browsers may need additional system libraries.
 
 Publication
-  Source is mirrored to the supplied GitHub repository. Sites serves the public
-  website identified by .openai/hosting.json. A GitHub push alone does not publish
-  a new Sites version. Keep public access unchanged on subsequent updates.
+  This repository publishes directly to GitHub Pages through
+  .github/workflows/pages.yml. Each push to main verifies the protected note and
+  citations, builds dist/ and deploys the result. No Sites hosting is required.
+  GitHub Pages source must be set to GitHub Actions. The workflow and site use
+  relative asset paths so the project URL works under /Bio-Synthtetic-festival/.
+  content/site.json is the source for the booklet’s public companion URL.
+
+Local repository
+  The workspace root is now a checkout of the shared GitHub repository, tracking
+  origin/main. Its folder label may still say "curation assignment" in VS Code;
+  the configured origin is the festival repository. Work on the root files.
+  The original handouts and previous bio-synthetic/ folder are retained locally
+  and ignored. They are not the publishing source.
 
 Credits
   Concept, curation and BECA: Anshul Jain / adotj, Fatty Recording Co.
