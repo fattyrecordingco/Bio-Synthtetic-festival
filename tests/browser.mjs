@@ -21,6 +21,13 @@ try{
   assert.equal(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight+1),true);
   assert.deepEqual(external,[]);assert.equal(await page.locator('audio').getAttribute('src'),null);
  });
+ await check('Artwork occupies roughly half the desktop height and its knob has a visible prompt',async()=>{
+  const box=await page.locator('#sculpture').boundingBox();
+  assert.ok(box.height>=480&&box.height<=600,JSON.stringify(box));
+  assert.ok(box.width>=720,JSON.stringify(box));
+  assert.match(await page.locator('#knob-hint').textContent(),/Twist the knob/);
+  assert.equal(await page.locator('#time-dial').getAttribute('aria-describedby'),'knob-hint');
+ });
  await check('Hand dial captures drag outside its bounds and updates the visible festival time',async()=>{
   const box=await page.locator('#time-dial').boundingBox();const x=box.x+box.width/2,y=box.y+box.height/2;
   await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+160,y-110,{steps:12});await page.mouse.up();

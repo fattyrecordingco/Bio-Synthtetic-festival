@@ -31,16 +31,16 @@ img { display: block; max-width: 100%; }
   display: grid; grid-template-rows: auto minmax(0,1fr) auto;
   padding: 0 clamp(18px,4vw,64px) var(--dock-space);
 }
-.masthead { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; min-height: 64px; border-bottom: 1px solid var(--line); gap: 24px; }
+.masthead { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); gap: 24px; }
 .brand { font-size: 12px; text-decoration: none; flex-shrink: 0; }
 .brand span { font-size: 9px; color: var(--quiet); margin-left: 16px; }
 .masthead nav { display: flex; align-items: center; gap: clamp(16px,2vw,30px); }
 .masthead nav button { padding: 8px 0; min-height: 44px; font-size: 12px; }
 .masthead nav > a { font-size: 26px; width: 36px; height: 44px; text-align: center; text-decoration: none; }
 .poster { min-width: 0; min-height: 0; display: grid; grid-template-rows: auto minmax(0,1fr) auto; }
-.title-block { min-width: 0; overflow: clip; padding-top: clamp(12px,2vh,22px); }
-.title-block h1 { font: 400 clamp(56px,16.5vw,256px)/.98 Anton, Impact, sans-serif; letter-spacing: -.025em; white-space: nowrap; color: var(--accent); }
-.festival-caption { display: flex; justify-content: space-between; align-items: start; gap: 24px; font-size: 11px; margin-top: 12px; color: var(--quiet); }
+.title-block { min-width: 0; overflow: clip; padding-top: clamp(10px,1vh,14px); }
+.title-block h1 { font: 400 clamp(56px,min(10vw,10svh),144px)/.98 Anton, Impact, sans-serif; letter-spacing: -.025em; white-space: nowrap; color: var(--accent); }
+.festival-caption { display: flex; justify-content: space-between; align-items: start; gap: 24px; font-size: 11px; margin-top: 10px; color: var(--quiet); }
 .festival-caption p:last-child { text-align: right; }
 .scene { position: relative; min-width: 0; min-height: 0; isolation: isolate; overflow: clip; }
 .art-frame { position: absolute; inset: 0; display: grid; place-items: center; }
@@ -58,6 +58,7 @@ img { display: block; max-width: 100%; }
 .scene-meta { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; font: 10px/1.5 'Courier New',monospace; color: var(--quiet); z-index: 2; pointer-events: none; }
 #scene-clock { font-size: 18px; color: var(--accent); }
 .scene-caption { position: absolute; right: 0; top: calc(50% - 22px); display: grid; place-items: center; min-width: 44px; min-height: 44px; font: 14px 'Courier New',monospace; color: var(--quiet); }
+.knob-hint { position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); font: 10px/1.5 'Courier New',monospace; color: var(--quiet); white-space: nowrap; pointer-events: none; }
 .artist-field { min-width: 0; padding: 8px 0 10px; border-top: 1px solid var(--line); }
 .artist-field-heading { display: flex; align-items: center; justify-content: space-between; height: 28px; margin-bottom: 7px; font: 10px 'Courier New',monospace; color: var(--quiet); }
 .strip-controls { display: flex; gap: 8px; }
@@ -66,7 +67,7 @@ img { display: block; max-width: 100%; }
 .artist-strip { display: grid; grid-template-columns: repeat(9,minmax(0,1fr)); gap: clamp(12px,2vw,28px); list-style: none; padding: 0; margin: 0; }
 .artist-strip li { min-width: 0; display: flex; justify-content: center; }
 .artist-button { display: flex; flex-direction: column; align-items: center; gap: 9px; width: 100%; max-width: 126px; padding: 0; text-align: center; position: relative; }
-.artist-button canvas { display: block; width: 100%; max-width: 104px; aspect-ratio: 1; opacity: .85; }
+.artist-button canvas { display: block; width: 100%; max-width: 76px; aspect-ratio: 1; opacity: .85; }
 .artist-button:hover canvas, .artist-button[aria-pressed=true] canvas { opacity: 1; }
 .artist-button[aria-pressed=true]:before { content: '+'; position: absolute; top: 0; right: 0; z-index: 1; color: var(--accent); }
 .artist-button > span { font-size: 10px; line-height: 1.4; min-height: 28px; color: var(--quiet); }
@@ -95,14 +96,14 @@ body.has-player dialog { max-height: calc(100svh - 172px); }
 .profile, .profile-copy { min-width: 0; }
 .floating-player { bottom: max(12px,env(safe-area-inset-bottom)); right: 20px; }
 @media (min-width:1700px) {
-  .artist-button canvas { max-width: 116px; }
+  .artist-button canvas { max-width: 92px; }
   .artist-button > span { font-size: 11px; }
 }
 @media (max-width:1000px) {
   .masthead nav { gap: 20px; }
   .artist-strip { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; padding: 0 2px 5px; }
   .artist-strip li { width: 94px; flex: 0 0 94px; scroll-snap-align: start; }
-  .artist-button canvas { width: 94px; height: 94px; }
+  .artist-button canvas { width: 84px; height: 84px; }
   .scene-meta { font-size: 9px; }
 }
 @media (max-width:600px) {
@@ -126,7 +127,7 @@ body.has-player dialog { max-height: calc(100svh - 172px); }
   .artist-strip { gap: 20px; }
   .artist-strip li { width: 78px; flex-basis: 78px; }
   .artist-button { gap: 7px; }
-  .artist-button canvas { width: 78px; height: 78px; }
+  .artist-button canvas { width: 68px; height: 68px; }
   .artist-button > span { font-size: 9px; min-height: 26px; }
   .footer { padding-bottom: max(8px,env(safe-area-inset-bottom)); }
   .time-track { gap: 15px; font-size: 9px; }
@@ -158,7 +159,7 @@ body.has-player dialog { max-height: calc(100svh - 172px); }
 @media (max-height:760px) and (min-width:601px) {
   .masthead { min-height: 52px; }
   .title-block { padding-top: 10px; }
-  .title-block h1 { font-size: 13.5vw; }
+  .title-block h1 { font-size: 10svh; }
   .festival-caption { margin-top: 7px; }
   .artist-field { padding-top: 3px; padding-bottom: 3px; }
   .artist-button canvas { max-width: 72px; height: auto; }

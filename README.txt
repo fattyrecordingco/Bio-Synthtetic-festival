@@ -87,7 +87,8 @@ Local repository
 
 Credits
   Concept, curation and BECA: Anshul Jain / adotj, Fatty Recording Co.
-  ChatGPT: research, drafting, code and design assistance.
+  Research and curation: Anshul Jain / adotj.
+  ChatGPT: grammar, paraphrasing supplied research, website and booklet production.
   Central sculpture: built-in OpenAI image generation; live dither/ASCII display.
   Artist sources: content/image-credits.json and the booklet.
   Anton and Space Grotesk: SIL Open Font License (licences in assets/).

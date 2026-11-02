@@ -49,8 +49,7 @@ export async function initializeArt(){
  const frame=document.querySelector('#art-frame'),object=document.querySelector('#art-object');
  const fit=()=>{
   const width=frame.clientWidth,height=frame.clientHeight;
-  const margin = window.innerWidth <= 600 ? 0.98 : 0.84;
-  const fittedWidth=Math.max(1,Math.min(width*margin,height*1.5));
+  const fittedWidth=Math.max(1,Math.min(width*.98,(height-22)*1.5,window.innerHeight*.6*1.5));
   object.style.width=fittedWidth+'px';object.style.height=fittedWidth/1.5+'px';
  };
  const observer=new ResizeObserver(fit);observer.observe(frame);fit();
