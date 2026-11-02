@@ -252,13 +252,14 @@ def submission(booklet,declaration,output):
     last._sectPr.find(qn('w:cols')).set(qn('w:num'),'2')
     last._sectPr.find(qn('w:cols')).set(qn('w:space'),'400')
     last.top_margin = last.bottom_margin = Cm(1.9)
+    output.parent.mkdir(parents=True,exist_ok=True)
     composer.save(output)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--declaration',type=Path,help='Local MMT declaration DOCX (never published)')
-    parser.add_argument('--submission',type=Path,default=ROOT/'Bio-synthetic_Curation_Submission.docx')
+    parser.add_argument('--submission',type=Path,default=ROOT/'submission/Bio-synthetic_Curation_Submission.docx')
     args = parser.parse_args()
     assert 800<=len(NOTE.split())<=1000
     doc = Document(); setup(doc); cover(doc); programme(doc); order_of_event(doc); references(doc)

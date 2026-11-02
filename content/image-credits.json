@@ -6,7 +6,7 @@
     "credit": "adotj.music / Spotify artist image",
     "alt": "Artist logo for adotj.music",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/adotj.jpg",
+    "raw": "source-material/artists/adotj.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -17,7 +17,7 @@
     "credit": "Wild Anima / Spotify artist image",
     "alt": "Wild Anima artist portrait",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/wild.jpg",
+    "raw": "source-material/artists/wild.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -28,7 +28,7 @@
     "credit": "Anoushka Shankar / official biography",
     "alt": "Portrait of Anoushka Shankar",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/anoushka.jpg",
+    "raw": "source-material/artists/anoushka.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -39,7 +39,7 @@
     "credit": "Modern Biology / SoundCloud avatar",
     "alt": "Modern Biology artist portrait",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/modern.jpg",
+    "raw": "source-material/artists/modern.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -50,7 +50,7 @@
     "credit": "Mileece / SoundCloud avatar",
     "alt": "Mileece artist image",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/mileece.jpg",
+    "raw": "source-material/artists/mileece.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -61,7 +61,7 @@
     "credit": "Biosis / Bandcamp artist image",
     "alt": "Biosis artist portrait",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/biosis.jpg",
+    "raw": "source-material/artists/biosis.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -72,7 +72,7 @@
     "credit": "Brian d’Souza / official press image",
     "alt": "Portrait of Brian d’Souza",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/brian.jpg",
+    "raw": "source-material/artists/brian.jpg",
     "fit": "cover",
     "invert": false
   },
@@ -83,7 +83,7 @@
     "credit": "Masterplants Orchestra / official logo",
     "alt": "Masterplants Orchestra logo",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/masterplants.png",
+    "raw": "source-material/artists/masterplants.png",
     "fit": "contain",
     "invert": true
   },
@@ -94,7 +94,7 @@
     "credit": "Roysten Abel Productions / The Manganiyar Seduction",
     "alt": "Reference photograph of The Manganiyar Seduction, not a confirmed festival ensemble",
     "downloaded": "2026-11-02",
-    "raw": "assets/raw/manganiyar.webp",
+    "raw": "source-material/artists/manganiyar.webp",
     "fit": "cover",
     "invert": false
   }

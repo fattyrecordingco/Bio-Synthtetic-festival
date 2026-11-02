@@ -1,17 +1,19 @@
+# Generated development files.
 node_modules/
+dist/
 test-results/
 playwright-report/
 __pycache__/
-dist/
-assets/raw/
-assets/sculpture-source.png
+.venv*/
 
-# Original assignment handouts and the previous local Sites checkout.
-/Bio-synthetic_Curation_Assignment.docx
-/Bio-synthetic_Editable.html
-/bio-synthetic/
+# Private originals and completed submission.
+/source-material/
+/submission/
+/*.docx
+/*.pdf
 
-# Keep declarations and personal submission details local.
-/MMT-PlagiarismDeclaration*.docx
-/Bio-synthetic_Curation_Submission.docx
-/Bio-synthetic_Curation_Submission.pdf
+# Editor and previous hosting metadata.
+/.openai/
+.DS_Store
+Thumbs.db
+~$*

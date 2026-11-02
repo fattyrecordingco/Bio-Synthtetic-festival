@@ -82,11 +82,11 @@ class FestivalContent(unittest.TestCase):
         self.assertEqual(records['tom']['media'][0],'spotify')
         self.assertIn('not confirmed',records['tom']['text'])
 
-    @unittest.skipUnless((ROOT / 'Bio-synthetic_Curation_Submission.docx').exists(),
+    @unittest.skipUnless((ROOT / 'submission/Bio-synthetic_Curation_Submission.docx').exists(),
                          'Personal submission is intentionally local')
     def test_local_submission_declaration(self):
         ns = {'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
-        with zipfile.ZipFile(ROOT / 'Bio-synthetic_Curation_Submission.docx') as archive:
+        with zipfile.ZipFile(ROOT / 'submission/Bio-synthetic_Curation_Submission.docx') as archive:
             root = ET.fromstring(archive.read('word/document.xml'))
             styles = ET.fromstring(archive.read('word/styles.xml'))
         paragraphs = [''.join(t.text or '' for t in p.findall('.//w:t',ns))

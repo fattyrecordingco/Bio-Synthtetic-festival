@@ -8,5 +8,5 @@ await mkdir(path.join(dist,'content'),{recursive:true});
 for(const name of ['index.html','styles.css','stage-ui.js','stage-art.js','player.js'])await cp(path.join(root,name),path.join(dist,name));
 for(const name of ['festival.json','programme-note.txt','media-verification.json','sources.txt','image-credits.json','artwork.json','credits.json','site.json'])await cp(path.join(root,'content',name),path.join(dist,'content',name));
 await cp(path.join(root,'assets'),path.join(dist,'assets'),{recursive:true,filter:source=>!source.includes(path.join('assets','raw'))&&!source.endsWith('sculpture-source.png')});
-await cp(path.join(root,'ASSIGNMENT-CHECK.txt'),path.join(dist,'ASSIGNMENT-CHECK.txt'));
+await cp(path.join(root,'docs','assignment-check.txt'),path.join(dist,'ASSIGNMENT-CHECK.txt'));
 console.log('Static website built in dist/.');

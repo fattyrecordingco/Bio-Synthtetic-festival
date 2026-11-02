@@ -8,7 +8,7 @@ Programme note
   bibliography, credits and declaration are outside the note's word count.
 
 Submission structure
-  Local Bio-synthetic_Curation_Submission.docx begins with the supplied MMT
+  Local submission/Bio-synthetic_Curation_Submission.docx begins with the supplied MMT
   plagiarism declaration and a completed AI-use statement. Name and assessment
   title are filled; student ID, module, lecturers, date and signature stay blank
   for the student. The institution's attestation wording and logo are retained.

@@ -42,6 +42,29 @@ try{
   await page.locator('#journey-time').focus();await page.keyboard.press('End');assert.equal(await page.locator('#time-dial').getAttribute('aria-valuenow'),'1080');
   await page.keyboard.press('Home');assert.equal(await page.locator('html').getAttribute('data-phase'),'afternoon');
  });
+ await check('All nine portraits and the sculpture match each theme without fetching new images',async()=>{
+  const imageRequests=[];const record=request=>{if(request.resourceType()==='image')imageRequests.push(request.url());};
+  page.on('request',record);
+  const palettes=[];
+  for(const [value,phase] of [[0,'afternoon'],[180,'twilight'],[600,'night'],[990,'dawn']]){
+   await page.locator('#journey-time').evaluate((el,value)=>{el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));},value);
+   const result=await page.evaluate(()=>{
+    const style=getComputedStyle(document.documentElement),rgb=token=>style.getPropertyValue(token).trim().slice(1).match(/../g).map(hex=>parseInt(hex,16)).join(',');
+    const portraits=[...document.querySelectorAll('#artist-strip canvas')].map(canvas=>{
+     const pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data,colors=new Set();
+     for(let i=0;i<pixels.length;i+=4)colors.add(`${pixels[i]},${pixels[i+1]},${pixels[i+2]}`);
+     return {phase:canvas.dataset.phase,colors:[...colors].sort()};
+    });
+    const canvas=document.querySelector('#sculpture'),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+    let sculpture;for(let i=0;i<pixels.length;i+=4)if(pixels[i+3]){sculpture=`${pixels[i]},${pixels[i+1]},${pixels[i+2]}`;break;}
+    return {expected:[rgb('--ink'),rgb('--bg')].sort(),ink:rgb('--ink'),portraits,sculpture};
+   });
+   for(const portrait of result.portraits){assert.equal(portrait.phase,phase);assert.deepEqual(portrait.colors,result.expected);}
+   assert.equal(result.sculpture,result.ink);palettes.push(result.ink);
+  }
+  assert.equal(new Set(palettes).size,4);assert.deepEqual(imageRequests,[]);page.off('request',record);
+  await page.locator('#time-dial').focus();await page.keyboard.press('Home');
+ });
  await check('ASCII and dither are distinct renderings of the same artwork',async()=>{
   const before=await page.locator('#sculpture').evaluate(c=>c.toDataURL());await page.locator('#art-mode').click();
   assert.equal(await page.locator('#sculpture').getAttribute('data-mode'),'ascii');
@@ -76,6 +99,21 @@ try{
   assert.match(await page.locator('audio').getAttribute('src'),/^https:\/\/p.scdn.co/);
   await page.waitForSelector('.profile-portrait[data-loaded="true"]');
   assert.match(await page.locator('.profile small').textContent(),/Spotify/);
+ });
+ await check('An open artist profile follows time colours and keeps its dither pattern',async()=>{
+  const result=await page.evaluate(()=>{
+   const profile=document.querySelector('.profile-portrait'),read=()=>profile.getContext('2d').getImageData(0,0,profile.width,profile.height).data;
+   const range=document.querySelector('#journey-time'),before=read();range.value=990;range.dispatchEvent(new Event('input',{bubbles:true}));
+   const after=read(),ink=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim().slice(1).match(/../g).map(hex=>parseInt(hex,16));
+   let changed=false,samePattern=true;
+   for(let i=0;i<before.length;i+=4){
+    if(before[i]!==after[i])changed=true;
+    if((before[i]>100)!==(after[i]===ink[0]))samePattern=false;
+   }
+   const phase=profile.dataset.phase;range.value=0;range.dispatchEvent(new Event('input',{bubbles:true}));
+   return {changed,samePattern,phase};
+  });
+  assert.deepEqual(result,{changed:true,samePattern:true,phase:'dawn'});
  });
  await check('Artist programme link includes all separate collaborations and solo',async()=>{
   await page.locator('[data-find-artist="adotj"]').click();

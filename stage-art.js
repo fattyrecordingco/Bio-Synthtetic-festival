@@ -1,9 +1,24 @@
 // Display the original assets through a live ordered-dither screen.
 const pattern=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
 const images=new Map();
+const portraitMasks=new WeakMap();
 let sourcePixels=null,currentPhase='afternoon',ascii=false;
 function image(src){if(!images.has(src))images.set(src,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Image unavailable: '+src));img.src=src;}));return images.get(src);}
 function tone(lum,x,y){const threshold=(pattern[(y%4)*4+x%4]+.5)/16;return lum>threshold;}
+function artworkPalette(){
+ const style=getComputedStyle(document.documentElement);
+ const rgb=token=>{const hex=style.getPropertyValue(token).trim().slice(1);return [0,2,4].map(i=>parseInt(hex.slice(i,i+2),16));};
+ return {ink:rgb('--ink'),bg:rgb('--bg')};
+}
+function paintPortrait(canvas,palette=artworkPalette()){
+ const mask=portraitMasks.get(canvas);if(!mask)return;
+ const ctx=canvas.getContext('2d'),frame=ctx.createImageData(canvas.width,canvas.height),pixels=frame.data;
+ for(let i=0;i<mask.length;i++){
+  const color=mask[i]?palette.ink:palette.bg,n=i*4;
+  pixels[n]=color[0];pixels[n+1]=color[1];pixels[n+2]=color[2];pixels[n+3]=255;
+ }
+ ctx.putImageData(frame,0,0);canvas.dataset.phase=currentPhase;
+}
 export async function renderPortrait(canvas,credit){
  if(!canvas||!credit)return;
  try{
@@ -15,20 +30,19 @@ export async function renderPortrait(canvas,credit){
   const dx=mode==='contain'?(size-w)/2:Math.max(size-w,Math.min(0,size/2-w*fx));
   const dy=mode==='contain'?(size-h)/2:Math.max(size-h,Math.min(0,size/2-h*fy));
   ctx.drawImage(img,dx,dy,w,h);
-  const frame=ctx.getImageData(0,0,size,size),pixels=frame.data;
+  const pixels=ctx.getImageData(0,0,size,size).data,mask=new Uint8Array(size*size);
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
    const n=(y*size+x)*4;let lum=(.2126*pixels[n]+.7152*pixels[n+1]+.0722*pixels[n+2])/255;
    if(credit.invert)lum=1-lum;
    lum=Math.pow(Math.max(0,Math.min(1,(lum-.045)/.85)),.8);
-   const bright=tone(lum,Math.floor(x/2),Math.floor(y/2));
-   pixels[n]=bright?203:8;pixels[n+1]=bright?221:26;pixels[n+2]=bright?159:16;pixels[n+3]=255;
+   mask[y*size+x]=Number(tone(lum,Math.floor(x/2),Math.floor(y/2)));
   }
-  ctx.putImageData(frame,0,0);canvas.dataset.loaded='true';
- }catch(error){canvas.dataset.loaded='false';const ctx=canvas.getContext('2d');ctx.fillStyle='#acc483';ctx.font='22px monospace';ctx.fillText('↗',100,125);console.warn(error.message);}
+  portraitMasks.set(canvas,mask);paintPortrait(canvas);canvas.dataset.loaded='true';
+ }catch(error){canvas.dataset.loaded='false';const ctx=canvas.getContext('2d');ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--ink');ctx.font='22px monospace';ctx.fillText('↗',100,125);console.warn(error.message);}
 }
 function renderSculpture(){
  if(!sourcePixels)return;const canvas=document.querySelector('#sculpture'),ctx=canvas.getContext('2d'),out=ctx.createImageData(canvas.width,canvas.height),pixels=out.data;
- const palette={afternoon:[202,222,150],twilight:[233,216,163],night:[176,207,182],dawn:[253,240,183]}[currentPhase];
+ const palette=artworkPalette().ink;
  const width=canvas.width,height=canvas.height;
  if(ascii){
   ctx.clearRect(0,0,width,height);ctx.font='8px monospace';ctx.textBaseline='top';ctx.fillStyle=`rgb(${palette.join(',')})`;
@@ -44,7 +58,15 @@ function renderSculpture(){
  }
  ctx.putImageData(out,0,0);canvas.dataset.loaded='true';canvas.dataset.mode='dither';
 }
-export function setArtTime(value,phase){const changed=currentPhase!==phase;currentPhase=phase;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.style.setProperty('--hand-turn',`${(value/1080-.5)*5}deg`);if(changed)renderSculpture();}
+export function setArtTime(value,phase){
+ const changed=currentPhase!==phase;currentPhase=phase;
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.style.setProperty('--hand-turn',`${(value/1080-.5)*5}deg`);
+ if(changed){
+  const palette=artworkPalette();
+  document.querySelectorAll('[data-portrait],.profile-portrait').forEach(canvas=>paintPortrait(canvas,palette));
+  renderSculpture();
+ }
+}
 export async function initializeArt(){
  const frame=document.querySelector('#art-frame'),object=document.querySelector('#art-object');
  const fit=()=>{

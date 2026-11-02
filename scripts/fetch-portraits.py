@@ -12,7 +12,7 @@ images={
 'brian':('https://images.squarespace-cdn.com/content/v1/60c5b3891d84ec1d37ee3d7d/96c8c585-c1ce-4418-b3e6-97c0e1811f9a/Briandsouzapresspic6.jpeg?format=500w','https://www.briandsouza.in/plants-can-dance','Brian d’Souza / official press image','Portrait of Brian d’Souza'),
 'masterplants':('https://images.squarespace-cdn.com/content/v1/5f1054b1511b113453347e2b/91977f0d-9392-416e-8474-9849b8edc477/MP_Logo_Blk.png?format=500w','https://www.masterplants.net/orchestra','Masterplants Orchestra / official logo','Masterplants Orchestra logo'),
 'manganiyar':('https://roystenabel.co/core-source/uploads/2026/01/tms9.webp','https://roystenabel.co/the-manganiyar-seduction/','Roysten Abel Productions / The Manganiyar Seduction','Reference photograph of The Manganiyar Seduction, not a confirmed festival ensemble')}
-raw=ROOT/'assets/raw';raw.mkdir(exist_ok=True)
+raw=ROOT/'source-material/artists';raw.mkdir(parents=True,exist_ok=True)
 def download(item):
  key,(url,source,credit,alt)=item
  request=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
