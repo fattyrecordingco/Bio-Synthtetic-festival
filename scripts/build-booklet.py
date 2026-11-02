@@ -1,153 +1,273 @@
-"""Reconcile the supplied booklet with the website, preserving its programme note.
+"""Build the public booklet and optionally a local submission with the MMT form.
 
-First run: --source /path/to/original.docx
-Later runs use the small, image-free template in content/booklet-template.docx.
+Install requirements-docs.txt first. The programme note is never rewritten.
+The supplied declaration and submission stay outside the public repository.
 """
+from copy import deepcopy
+from io import BytesIO
 from pathlib import Path
-from xml.dom import minidom as DOM
 import argparse
 import json
-import zipfile
+from docx import Document
+from docx.enum.section import WD_SECTION_START
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Cm, Pt, RGBColor
+from docx.opc.constants import RELATIONSHIP_TYPE as RT
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
-R = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
-REL = 'http://schemas.openxmlformats.org/package/2006/relationships'
-parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=Path, default=ROOT / 'content/booklet-template.docx')
-parser.add_argument('--site-url', default=json.loads((ROOT / 'content/site.json').read_text())['url'])
-args = parser.parse_args()
-data = json.loads((ROOT / 'content/festival.json').read_text())
-note = (ROOT / 'content/programme-note.txt').read_text()
-with zipfile.ZipFile(args.source) as archive:
-    files = {name: archive.read(name) for name in archive.namelist()}
-doc = DOM.parseString(files['word/document.xml'])
-rels = DOM.parseString(files['word/_rels/document.xml.rels'])
-body = doc.getElementsByTagName('w:body')[0]
+GREEN, ACID, MUTED = '091B12', 'E3FA80', '4A6348'
+DATA = json.loads((ROOT/'content/festival.json').read_text())
+CREDITS = json.loads((ROOT/'content/credits.json').read_text())
+NOTE = (ROOT/'content/programme-note.txt').read_text()
+SITE = json.loads((ROOT/'content/site.json').read_text())['url']
 
-def text(node):
-    return ''.join(child.firstChild.data for child in node.getElementsByTagName('w:t') if child.firstChild)
 
-def element(name, attrs=None):
-    node = doc.createElementNS(W, 'w:' + name)
-    for key, value in (attrs or {}).items():
-        node.setAttributeNS(W, 'w:' + key, str(value))
+def xml(tag, **attrs):
+    node = OxmlElement('w:'+tag)
+    for key, value in attrs.items():
+        node.set(qn('w:'+key), str(value))
     return node
 
-def run(words, bold=False):
-    node = element('r')
-    if bold:
-        props = element('rPr'); props.appendChild(element('b')); node.appendChild(props)
-    value = element('t'); value.setAttribute('xml:space', 'preserve'); value.appendChild(doc.createTextNode(words)); node.appendChild(value)
-    return node
 
-def paragraph(words='', heading=False, page_break=False):
-    node = element('p'); props = element('pPr')
-    props.appendChild(element('spacing', {'after': 160, 'line': 260, 'lineRule': 'auto'}))
-    if heading:
-        props.appendChild(element('pStyle', {'val': 'Heading2'}))
-        props.appendChild(element('keepNext'))
-    if page_break:
-        props.appendChild(element('pageBreakBefore'))
-    node.appendChild(props); node.appendChild(run(words,heading)); return node
+def paragraph(doc, text='', size=None, bold=False, color=None, after=7):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_after = Pt(after)
+    r = p.add_run(text)
+    if size:
+        r.font.size = Pt(size)
+    r.bold = bold
+    if color:
+        r.font.color.rgb = RGBColor.from_string(color)
+    return p
 
-def append(node):
-    section = next((child for child in body.childNodes if child.nodeName == 'w:sectPr'), None)
-    body.insertBefore(node, section) if section else body.appendChild(node)
 
-def relationship(url):
-    existing = rels.getElementsByTagName('Relationship')
-    for relation in existing:
-        if relation.getAttribute('Target') == url:
-            return relation.getAttribute('Id')
-    highest = max(int(relation.getAttribute('Id').replace('rId','')) for relation in existing)
-    identifier = f'rId{highest+1}'
-    relation = rels.createElementNS(REL,'Relationship')
-    for key,value in {'Id':identifier,'Type':R+'/hyperlink','Target':url,'TargetMode':'External'}.items():
-        relation.setAttribute(key,value)
-    rels.documentElement.appendChild(relation); return identifier
+def heading(doc, text, page=False):
+    p = doc.add_paragraph(text, 'Heading 1')
+    p.paragraph_format.page_break_before = page
+    return p
 
-def link(words,url):
-    node = doc.createElementNS(W,'w:hyperlink'); node.setAttributeNS(R,'r:id',relationship(url))
-    value = run(words); props = element('rPr'); props.appendChild(element('color',{'val':'41602C'})); props.appendChild(element('u',{'val':'single'}))
-    value.insertBefore(props,value.firstChild); node.appendChild(value); return node
 
-# Remove only the old generated cover picture. Keep the document's original text,
-# order of events, styles, margins, running footer and note pagination.
-for drawing in list(doc.getElementsByTagName('w:drawing')):
-    drawing.parentNode.removeChild(drawing)
-files = {name:value for name,value in files.items() if not name.startswith('word/media/')}
-for relation in list(rels.getElementsByTagName('Relationship')):
-    if relation.getAttribute('Type').endswith('/image'):
-        relation.parentNode.removeChild(relation)
+def link(p, label, url):
+    identifier = p.part.relate_to(url, RT.HYPERLINK, is_external=True)
+    node = OxmlElement('w:hyperlink'); node.set(qn('r:id'), identifier)
+    run, props = xml('r'), xml('rPr')
+    props.append(xml('color', val=MUTED)); props.append(xml('u', val='single'))
+    props.append(xml('sz', val='18'))
+    run.append(props)
+    value = xml('t'); value.text = label; run.append(value)
+    node.append(run); p._p.append(node)
 
-# Save a compact template once; all later generated additions stay out of it.
-template = ROOT / 'content/booklet-template.docx'
-if args.source.resolve() != template.resolve():
-    template_files = dict(files)
-    template_files['word/document.xml'] = doc.toxml(encoding='UTF-8')
-    template_files['word/_rels/document.xml.rels'] = rels.toxml(encoding='UTF-8')
-    with zipfile.ZipFile(template,'w',zipfile.ZIP_DEFLATED) as archive:
-        for name,value in template_files.items(): archive.writestr(name,value)
 
-for relation in rels.getElementsByTagName('Relationship'):
-    target = relation.getAttribute('Target')
-    if '2hrdPo9YFwpDLFUUp0BYlQ' in target:
-        relation.setAttribute('Target','https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx')
-    if 'bio-synthetic.fatty-record-8662.chatgpt.site' in target:
-        relation.setAttribute('Target',args.site_url)
-    if target.rstrip('/') == 'https://biosis.carrd.co':
-        relation.setAttribute('Target','https://biosis.bandcamp.com/track/wachuma-fm')
+def cover_background():
+    """Dither the existing illustration, without generation or network requests."""
+    source = Image.open(ROOT/'assets/sculpture.webp').convert('RGB')
+    pattern = [0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5]
+    art = Image.new('RGB', source.size, '#'+GREEN)
+    pixels, output = source.load(), art.load()
+    for y in range(source.height):
+        for x in range(source.width):
+            r,g,b = pixels[x,y]
+            lum = (.2126*r+.7152*g+.0722*b)/255
+            threshold = (pattern[((y//2)%4)*4+(x//2)%4]+.5)/16
+            fade = min(1, max(0, (source.height-y)/(source.height*.15)))
+            if lum>.025 and lum**.86*fade>threshold:
+                output[x,y] = (202,222,150)
+    page = Image.new('RGB', (1240,1754), '#'+GREEN)
+    page.paste(art.resize((1050,700), Image.Resampling.LANCZOS), (95,400))
+    data = BytesIO(); page.save(data, format='PNG'); data.seek(0)
+    return data
 
-replacements = {
-    'https://bio-synthetic.fatty-record-8662.chatgpt.site':args.site_url,
-    'The hosted companion is private. The supplied Bio-synthetic_Editable.html file opens locally without a ChatGPT sign-in. Streaming players, maps and external links require internet access.':'The rebuilt interactive companion is public at the link above. A local copy is also supplied; see README.txt. Recordings, streaming players and regional maps require internet access.',
-    'Short artist-selected excerpts by Biosis, Wild Anima and Tom Iddan. Compare synthesizer layers, voice, percussion and environmental recordings; final excerpts would be chosen with the artists.':'Plantland Radio was founded by Masterplants Orchestra / Tritone Crisantemo.[4,6] Proposed selections include Biosis, Wild Anima and Tom Iddan; excerpts would be chosen with the artists. The website separates the station broadcast from individual catalogue examples. A Tito the Wize preview introduces a wider catalogue and is not identified as a plant-derived track.',
-    'Generative AI assistance: ChatGPT assisted with research, programme development, drafting, document layout and the interactive website. Botanical artwork was generated using OpenAI image generation from a prompt specifying dithered leaves, ASCII-like marks and a green-and-ivory palette.':'Generative AI assistance: ChatGPT assisted with research, programme development, drafting, document layout and the website rebuild. The rebuilt website uses an original hand, knob and leaf sculpture created with OpenAI image generation, displayed through live dither and ASCII rendering. Artist images come from credited artist and production sources. The artwork control changes the illustrative time and light, without simulating BECA or live plant data.'
-}
-protected = note.split('\n\n')
-for para in list(doc.getElementsByTagName('w:p')):
-    value = text(para)
-    if value in protected: continue
-    if value in replacements:
-        # Preserve existing paragraph properties while replacing the text.
-        for child in list(para.childNodes):
-            if child.nodeName != 'w:pPr': para.removeChild(child)
-        if value.startswith('https://'):para.appendChild(link(replacements[value],args.site_url))
-        else:para.appendChild(run(replacements[value]))
 
-append(paragraph('06 / REFERENCE REGISTER',heading=True,page_break=True))
-append(paragraph('Complete website and booklet sources',heading=True))
-append(paragraph('References [1]–[10] correspond to the unchanged 917-word programme note. The full register below also covers artist profiles, existing recordings, the Plantland Radio founder credit, visual references and website integrations. All sources checked 2 November 2026. References and explanatory captions are separate from the programme-note word count.'))
-append(paragraph('Attribution and listening distinctions',heading=True))
-append(paragraph('Plantland Radio is the radio platform founded by Masterplants Orchestra / Tritone Crisantemo.[4,6] It is not a separate festival performer. Biosis, Wild Anima and Tom Iddan are artists in its directory. Tom Iddan’s linked Spotify identity is Tito the Wize; an example from that wider catalogue is not evidence that the particular track is plant-derived.'))
-append(paragraph('The Manganiyar Seduction is an existing production conceived, arranged and directed by Roysten Abel, with an Amarrass release.[11,12] It is a listening reference, not the identity or repertoire of the as-yet unselected ensemble for Roots in Conversation. Modern Biology’s acoustic guest also remains unselected. Anoushka Shankar’s Chapter II is an existing recording, separate from the proposed sunrise jugalbandi.'))
-append(paragraph('Evidence and links by artist',heading=True))
-for item in data['artists']:
-    citations=', '.join(str(value) for value in item['sourceRefs'])
-    append(paragraph(f"{item['name']} — practice and listening references [{citations}]. {item['caption']}"))
-append(paragraph('Website image credits',heading=True))
-for artist in data['artists']:
-    image = artist.get('image')
-    if image:
-        p = paragraph(artist['name'] + ' — '); p.appendChild(link(image['credit'],image['source'])); append(p)
-append(paragraph('The Manganiyar image documents The Manganiyar Seduction, an existing Roysten Abel production. It does not identify a confirmed festival ensemble. Display dithering and cropping occur in the browser; the source images are credited above.'))
-append(paragraph('Additional online references [11]–[36]',heading=True))
-append(paragraph('References [1]–[10] appear on the preceding Sources and credits page. The following register continues that numbering.'))
-for index,(title,url) in enumerate(data['sources'][10:],11):
-    para = paragraph(f'[{index}] ');para.appendChild(link(title,url));append(para)
-append(paragraph('Website player behaviour',heading=True))
-append(paragraph('Nothing plays on arrival. Selecting an artist requests an existing recording in the floating player. Spotify excerpts are previews, not full festival sets. SoundCloud and YouTube use their service APIs. Bandcamp and the radio station retain their own controls. Browser and service rules can require an additional press; a full-recording source is always linked.'))
-append(paragraph('Venue and commission status',heading=True))
-append(paragraph('All invitations, titled live collaborations, installation commissions, access provisions and production arrangements are hypothetical proposals. The festival layout is illustrative and not surveyed. The regional map shows Dandeli, not Jungli’s undisclosed location. No exact venue coordinates or date-specific sunrise time are claimed.'))
-append(paragraph('Assignment and AI policy',heading=True))
-append(paragraph('The note meets the supplied 800–1,000-word requirement. Cover details, themes, artists, venue, duration, order of events and secondary sources are included. MMT Student Handbook sections 4.5 and 4.6 were not supplied, so their requirements have not been independently checked. AI assistance is acknowledged above.'))
+def full_page_background(doc):
+    p = paragraph(doc, after=0); p.paragraph_format.line_spacing = Pt(1)
+    inline = p.add_run().add_picture(cover_background(), width=Cm(21), height=Cm(29.7))._inline
+    # Anchored behind editable cover text, on this page only.
+    anchor = OxmlElement('wp:anchor')
+    for key,value in {'distT':'0','distB':'0','distL':'0','distR':'0','simplePos':'0',
+                      'relativeHeight':'0','behindDoc':'1','locked':'0',
+                      'layoutInCell':'1','allowOverlap':'1'}.items():
+        anchor.set(key,value)
+    position = OxmlElement('wp:simplePos'); position.set('x','0'); position.set('y','0')
+    anchor.append(position)
+    for axis in ['H','V']:
+        pos = OxmlElement('wp:position'+axis); pos.set('relativeFrom','page')
+        offset = OxmlElement('wp:posOffset'); offset.text = '0'
+        pos.append(offset); anchor.append(pos)
+    anchor.append(deepcopy(inline.find(qn('wp:extent'))))
+    anchor.append(OxmlElement('wp:wrapNone'))
+    for tag in ['wp:docPr','wp:cNvGraphicFramePr','a:graphic']:
+        child = inline.find(qn(tag))
+        if child is not None:
+            anchor.append(deepcopy(child))
+    anchor.find(qn('wp:docPr')).set('descr','Dithered hand, synth knob and leaf on forest green')
+    inline.getparent().replace(inline,anchor)
 
-actual = [text(para) for para in doc.getElementsByTagName('w:p') if text(para) in protected]
-assert actual == protected, 'Protected programme note changed.'
-files['word/document.xml'] = doc.toxml(encoding='UTF-8')
-files['word/_rels/document.xml.rels'] = rels.toxml(encoding='UTF-8')
-output = ROOT / 'assets/Bio-synthetic-booklet.docx'
-with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as archive:
-    for name,value in files.items(): archive.writestr(name,value)
-print(f'Booklet saved: {len(note.split())} programme-note words; {len(data["sources"])} numbered references; protected text unchanged.')
+
+def setup(doc):
+    section = doc.sections[0]
+    section.page_width, section.page_height = Cm(21), Cm(29.7)
+    section.top_margin = section.bottom_margin = Cm(1.7)
+    section.left_margin = section.right_margin = Cm(1.8)
+    normal = doc.styles['Normal']
+    normal.font.name = 'Arial'; normal.font.size = Pt(11)
+    normal.font.color.rgb = RGBColor.from_string(GREEN)
+    normal.paragraph_format.line_spacing = 1.15
+    normal.paragraph_format.widow_control = True
+    title = doc.styles['Heading 1']
+    title.font.name = 'Impact'; title.font.size = Pt(30)
+    title.font.color.rgb = RGBColor.from_string(GREEN)
+    title.paragraph_format.space_before = Pt(0)
+    title.paragraph_format.space_after = Pt(14)
+    title.paragraph_format.keep_with_next = True
+    doc.core_properties.title = 'Bio-synthetic — Curation Assignment'
+    doc.core_properties.author = 'Anshul Jain / adotj'
+    doc.core_properties.subject = 'Expanding Parameters; Music & its Others; Experimentalism'
+    doc.core_properties.comments = CREDITS['assistance']
+
+
+def cover(doc):
+    full_page_background(doc)
+    paragraph(doc,'Fatty Recording Co. presents',10,color=ACID,after=13)
+    p = paragraph(doc,'BIO–SYNTHETIC',64,color=ACID,after=7)
+    p.runs[0].font.name = 'Impact'; p.paragraph_format.line_spacing = 1
+    paragraph(doc,'Interspecies music, from afternoon to first light.',10,color=ACID)
+    p = paragraph(doc,after=0); p.paragraph_format.line_spacing = Pt(360); p.add_run(' ')
+    paragraph(doc,'Curated by Anshul Jain / adotj',15,color=ACID,after=7)
+    paragraph(doc,'Curation Assignment · M.Phil. Music and Media Technology',10,color=ACID,after=9)
+    paragraph(doc,'Theme: Expanding Parameters\nMusic & its Others / Experimentalism',10,color=ACID,after=9)
+    paragraph(doc,'Jungli, near Dandeli, Karnataka\nApproximately 18 hours · 14:00–08:00 · sunrise finale',10,color=ACID,after=12)
+    paragraph(doc,'adotj · invited Manganiyar musicians · Anoushka Shankar\nModern Biology · Masterplants Orchestra · Wild Anima\nBrian d’Souza · Mileece · Biosis',9.5,color=ACID,after=9)
+    paragraph(doc,'Hypothetical festival. All invitations and commissions are proposed.',8.5,color=ACID,after=0)
+    section = doc.add_section(WD_SECTION_START.NEW_PAGE)
+    section.top_margin = section.bottom_margin = Cm(1.9)
+    section.header.is_linked_to_previous = False; section.footer.is_linked_to_previous = False
+    p = section.header.paragraphs[0]
+    r = p.add_run('BIO–SYNTHETIC / Fatty Recording Co.'); r.font.size = Pt(8)
+    r.font.color.rgb = RGBColor.from_string(MUTED)
+    p = section.footer.paragraphs[0]
+    r = p.add_run('Anshul Jain / adotj                                      '); r.font.size = Pt(8)
+    p._p.append(xml('fldSimple',instr='PAGE'))
+
+
+def programme(doc):
+    heading(doc,'Programme note')
+    paragraph(doc,f'{len(NOTE.split())} words · read before the event',9,color=MUTED,after=16)
+    for text in NOTE.split('\n\n'):
+        p = paragraph(doc,text,11.25,after=8); p.paragraph_format.line_spacing = 1.18
+        p.paragraph_format.keep_together = True
+
+
+def order_of_event(doc):
+    heading(doc,'Order of event',page=True)
+    paragraph(doc,'Times are IST. All live commissions, invitations and production plans are hypothetical. Sunrise timing is relative to dawn; no festival date or exact sunrise time is specified.',9,after=12)
+    table = doc.add_table(rows=0,cols=2); table.autofit = False
+    table.columns[0].width, table.columns[1].width = Cm(2.8), Cm(14.6)
+    for event in DATA['events']:
+        row = table.add_row(); row._tr.get_or_add_trPr().append(xml('cantSplit'))
+        first,second = row.cells; first.width,second.width = Cm(2.8),Cm(14.6)
+        p = first.paragraphs[0]; p.paragraph_format.space_after = Pt(6)
+        r = p.add_run(event['time']); r.bold = True; r.font.size = Pt(9)
+        r = p.add_run('\n'+('±45 min' if event['id']=='dawn' else '– '+event['end'])); r.font.size = Pt(8)
+        p = second.paragraphs[0]; p.paragraph_format.space_after = Pt(6)
+        p.paragraph_format.line_spacing = 1.05
+        r = p.add_run(event['title']); r.bold = True; r.font.size = Pt(9.5)
+        r = p.add_run('\n'+event['artist']); r.font.size = Pt(8.5)
+        for cell in row.cells:
+            borders = xml('tcBorders'); borders.append(xml('top',val='single',sz='3',color='B4C0AB'))
+            cell._tc.get_or_add_tcPr().append(borders)
+    paragraph(doc,'Existing recordings / listening references',10,True,after=4)
+    paragraph(doc,'Leaf Library: Mort Garson [2,21], Fujieda / Sarah Cahill [3,22], Plantland Radio [4,23,24] and Tom Iddan / Tito the Wize [25,36]. Artist catalogue links: adotj [13,33]; Manganiyar reference [11,12]; Shankar [14,34]; Modern Biology [15]; Masterplants Orchestra [16]; Wild Anima [17,35]; Brian d’Souza [18]; Mileece [19]; Biosis [20]. All are existing recordings, separate from the proposed festival works.',8.5,after=5)
+    paragraph(doc,'Plantland Radio was founded by Masterplants Orchestra / Tritone Crisantemo [4,6]. The Tito preview is a wider-catalogue example, not confirmed plant-derived music. The Manganiyar Seduction is a Roysten Abel production used as a reference; the festival ensemble and acoustic guest remain unselected.',8.5,after=0)
+
+
+def references(doc):
+    heading(doc,'Sources & credits',page=True)
+    paragraph(doc,'Numbered references support the note [1–10], recordings, artist profiles and website. Links are clickable. Source and link checks: 2 November 2026.',9,after=10)
+    section = doc.add_section(WD_SECTION_START.CONTINUOUS)
+    columns = section._sectPr.find(qn('w:cols'))
+    columns.set(qn('w:num'),'2'); columns.set(qn('w:space'),'400')
+    for index,(title,url) in enumerate(DATA['sources'],1):
+        p = paragraph(doc,f'[{index}] ',9,after=2)
+        p.paragraph_format.line_spacing = 1.03; p.paragraph_format.keep_together = True
+        link(p,title,url)
+    paragraph(doc,'Credits & AI assistance',12,True,after=8)
+    for key in ['curator','assistance','artwork']:
+        paragraph(doc,CREDITS[key],9,after=6)
+    paragraph(doc,'Website artist images',10,True,after=5)
+    items = []
+    for artist in DATA['artists']:
+        source = artist['image']['source']
+        refs = [str(i) for i,(_,url) in enumerate(DATA['sources'],1) if url==source]
+        items.append(artist['image']['credit']+' ['+','.join(refs)+']')
+    paragraph(doc,'; '.join(items)+'. Dithering and crops are display treatments. The Manganiyar image shows the existing reference production, not a confirmed festival ensemble.',8.5,after=7)
+    paragraph(doc,'Maps are illustrative: the regional view identifies Dandeli, not exact Jungli coordinates. Other artists use their own instruments. The interactive artwork changes time and light; it does not simulate BECA.',8.5,after=7)
+    p = paragraph(doc,'Interactive companion: ',9,after=0); link(p,SITE,SITE)
+
+
+def submission(booklet,declaration,output):
+    """Keep institutional wording and logo; leave the attestations unsigned."""
+    from docxcompose.composer import Composer
+    form = Document(declaration)
+    book = Document(booklet)
+    form.core_properties.title = book.core_properties.title
+    form.core_properties.author = book.core_properties.author
+    form.core_properties.comments = CREDITS['assistance']
+    # Shared style IDs in the institution's form must not replace booklet fonts.
+    for name in ['Normal','Heading 1']:
+        old = form.styles[name]._element
+        old.getparent().replace(old,deepcopy(book.styles[name]._element))
+    fields = {'Student Name:':'Anshul Jain','Assessment Title:':'Bio-synthetic — Curation Assignment'}
+    for row in form.tables[0].rows:
+        key = row.cells[0].text.strip()
+        if key in fields:
+            row.cells[1].text = fields[key]
+        for cell in row.cells:
+            for p in cell.paragraphs:
+                p.paragraph_format.space_before = Pt(2); p.paragraph_format.space_after = Pt(2)
+                for r in p.runs:
+                    r.font.size = Pt(10.5)
+    for p in form.paragraphs:
+        p.paragraph_format.space_after = Pt(5)
+        if not p.text.strip() and not p._p.xpath('.//w:drawing'):
+            p.paragraph_format.line_spacing = Pt(3); p.paragraph_format.space_after = Pt(0)
+        if p.text.startswith('The Department'):
+            for r in p.runs:
+                r.font.size = Pt(12)
+        elif p.text.startswith(('I have ','Signed:','Date:')):
+            for r in p.runs:
+                r.font.size = Pt(10.5)
+    paragraph(form,'Declaration of AI use',11,True,after=6)
+    paragraph(form,CREDITS['declaration'],9,after=0)
+    new = form.add_section(WD_SECTION_START.NEW_PAGE)
+    source = book.sections[0]
+    for attr in ['page_width','page_height','top_margin','bottom_margin','left_margin','right_margin']:
+        setattr(new,attr,getattr(source,attr))
+    new.header.is_linked_to_previous = False; new.footer.is_linked_to_previous = False
+    composer = Composer(form); composer.append(book)
+    # Restore the bibliography's columns after Composer adopts the form's
+    # final-section defaults. Header parts from the institution stay untouched.
+    last = composer.doc.sections[-1]
+    last._sectPr.find(qn('w:cols')).set(qn('w:num'),'2')
+    last._sectPr.find(qn('w:cols')).set(qn('w:space'),'400')
+    last.top_margin = last.bottom_margin = Cm(1.9)
+    composer.save(output)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--declaration',type=Path,help='Local MMT declaration DOCX (never published)')
+    parser.add_argument('--submission',type=Path,default=ROOT/'Bio-synthetic_Curation_Submission.docx')
+    args = parser.parse_args()
+    assert 800<=len(NOTE.split())<=1000
+    doc = Document(); setup(doc); cover(doc); programme(doc); order_of_event(doc); references(doc)
+    output = ROOT/'assets/Bio-synthetic-booklet.docx'; doc.save(output)
+    if args.declaration:
+        submission(output,args.declaration,args.submission)
+        print('Local submission saved with the MMT declaration first. Personal fields and signature remain blank.')
+    print(f'Public booklet saved: {len(NOTE.split())} unchanged note words, {len(DATA["events"])} events, {len(DATA["sources"])} references.')
+
+
+if __name__=='__main__':
+    main()

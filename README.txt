@@ -28,6 +28,7 @@ Edit
   content/programme-note.txt  Protected original note: 917 words.
   content/image-credits.json  Image origins and attribution.
   content/artwork.json        Original sculpture generation prompt and credit.
+  content/credits.json        Shared curation, assistance and artwork credits.
 
 Images
   Artist photographs and logos come from their credited artist/production pages.
@@ -54,7 +55,15 @@ Content and booklet
   Manganiyar collaboration and sunrise jugalbandi remain separate. The original
   917-word programme note is unchanged. The booklet includes the full reference
   register, artist-image credits and the public companion link.
-  Regenerate: python3 scripts/build-booklet.py
+  Regenerate: install requirements-docs.txt into a Python virtual environment,
+  then run python scripts/build-booklet.py. The script uses editable content
+  files and makes no network requests.
+  For the local submission, add:
+  --declaration "MMT-PlagiarismDeclaration2026 (1).docx"
+  This prepends the supplied form and AI-use statement. Student ID, module,
+  lecturers, date and signature stay blank for the student. The form and
+  Bio-synthetic_Curation_Submission.docx/PDF stay local and are ignored by Git.
+  The public booklet omits the personal declaration.
   See ASSIGNMENT-CHECK.txt for the supplied brief and policy limits.
 
 Checks and build (development dependencies only)
@@ -86,8 +95,7 @@ Local repository
   and ignored. They are not the publishing source.
 
 Credits
-  Concept, curation and BECA: Anshul Jain / adotj, Fatty Recording Co.
-  Research and curation: Anshul Jain / adotj.
+  Research, concept, curation and BECA: Anshul Jain / adotj, Fatty Recording Co.
   ChatGPT: grammar, paraphrasing supplied research, website and booklet production.
   Central sculpture: built-in OpenAI image generation; live dither/ASCII display.
   Artist sources: content/image-credits.json and the booklet.

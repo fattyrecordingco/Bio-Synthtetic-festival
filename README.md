@@ -10,6 +10,8 @@ Run locally with `npm start` (Node 18+, no install required), then open http://l
 
 The programme note remains exactly **917 words**. The downloadable booklet includes the reference register and image credits. [ASSIGNMENT-CHECK.txt](ASSIGNMENT-CHECK.txt) records the brief check; [content/sources.txt](content/sources.txt) contains the references.
 
+The booklet generator reads `content/festival.json`, `content/programme-note.txt` and `content/credits.json`. Install `requirements-docs.txt` with Python, then run `python scripts/build-booklet.py`. Add `--declaration "MMT-PlagiarismDeclaration2026 (1).docx"` to create the local submission with the supplied form and AI-use statement first. Personal details and the signature remain blank for the student; the form and submission stay out of Git and the public site.
+
 The original assignment handouts and the earlier `bio-synthetic/` checkout remain local and are ignored by Git. Work on the files at this repository’s root. Its `origin` is `https://github.com/fattyrecordingco/Bio-Synthtetic-festival.git`.
 
 To test GitHub Pages project-path handling locally:

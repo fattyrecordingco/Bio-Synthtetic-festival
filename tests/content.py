@@ -26,6 +26,15 @@ class FestivalContent(unittest.TestCase):
             relationships = archive.read('word/_rels/document.xml.rels').decode()
             self.assertIn('1taiQkQLBzfeMXIWMi2Hdx', relationships)
             self.assertNotIn('2hrdPo9YFwpDLFUUp0BYlQ', relationships)
+            self.assertEqual(paragraphs.count('Programme note'), 1)
+            self.assertFalse(any('continued' in p.lower() for p in paragraphs))
+            self.assertEqual(paragraphs.count('Sources & credits'), 1)
+            for event in DATA['events']:
+                self.assertIn(event['title'], '\n'.join(paragraphs))
+            credits = json.loads((ROOT / 'content/credits.json').read_text())
+            for key in ['curator', 'assistance', 'artwork']:
+                self.assertIn(credits[key], paragraphs)
+            self.assertNotIn('Student ID Number:', paragraphs)
 
     def test_separate_performances_and_sunrise(self):
         events = {event['id']:event for event in DATA['events']}
@@ -72,6 +81,35 @@ class FestivalContent(unittest.TestCase):
         self.assertNotIn('preview',records['plantland'])
         self.assertEqual(records['tom']['media'][0],'spotify')
         self.assertIn('not confirmed',records['tom']['text'])
+
+    @unittest.skipUnless((ROOT / 'Bio-synthetic_Curation_Submission.docx').exists(),
+                         'Personal submission is intentionally local')
+    def test_local_submission_declaration(self):
+        ns = {'w':'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+        with zipfile.ZipFile(ROOT / 'Bio-synthetic_Curation_Submission.docx') as archive:
+            root = ET.fromstring(archive.read('word/document.xml'))
+            styles = ET.fromstring(archive.read('word/styles.xml'))
+        paragraphs = [''.join(t.text or '' for t in p.findall('.//w:t',ns))
+                      for p in root.findall('.//w:p',ns)]
+        self.assertLess(paragraphs.index('Declaration of AI use'), paragraphs.index('BIO–SYNTHETIC'))
+        self.assertTrue(any(p.startswith('I have read and I understand the plagiarism provisions') for p in paragraphs))
+        self.assertTrue(any('Ready, Steady, Write' in p for p in paragraphs))
+        credits = json.loads((ROOT / 'content/credits.json').read_text())
+        self.assertIn(credits['declaration'], paragraphs)
+        self.assertEqual(paragraphs.count('Programme note'),1)
+        self.assertEqual([p for p in paragraphs if p in NOTE.split('\n\n')], NOTE.split('\n\n'))
+        table = root.find('.//w:tbl',ns)
+        fields = {}
+        for row in table.findall('w:tr',ns):
+            cells = [''.join(t.text or '' for t in cell.findall('.//w:t',ns)) for cell in row.findall('w:tc',ns)]
+            fields[cells[0].strip()] = cells[1].strip()
+        for key in ['Student ID Number:','Module Title:','Lecturer (s):','Date Submitted']:
+            self.assertEqual(fields[key],'')
+        self.assertTrue(any(p.startswith('Signed:') and '____________' in p for p in paragraphs))
+        sections = root.findall('.//w:sectPr',ns)
+        self.assertEqual(sections[-1].find('w:cols',ns).get('{'+ns['w']+'}num'),'2')
+        normal = styles.find("w:style[@w:styleId='Normal']/w:rPr/w:rFonts",ns)
+        self.assertEqual(normal.get('{'+ns['w']+'}ascii'),'Arial')
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

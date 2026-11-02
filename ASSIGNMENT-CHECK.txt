@@ -2,77 +2,61 @@ BIO-SYNTHETIC / check against the supplied assignment brief
 Checked: 2 November 2026
 
 Programme note
-  917 words using whitespace-separated words (including attached reference
-  markers); 800 minimum / 1,000 maximum. All 10 paragraphs match the supplied
-  HTML and booklet verbatim. The website's other text, schedule, bibliography,
-  cover and listening descriptions are separate from this word count.
-  The note is long enough to satisfy the brief. It is not necessary to reach
-  exactly 1,000 words. It remains a pre-event audience introduction.
+  917 whitespace-separated words, within the 800–1,000-word range.
+  All 10 supplied paragraphs are preserved verbatim, under one Programme note
+  heading. There is no separate continuation section. Cover, order of event,
+  bibliography, credits and declaration are outside the note's word count.
 
-Submission structure in the supplied DOCX
-  1. Cover: Anshul Jain / adotj, Curation Assignment, Expanding Parameters,
-     connections to Music & its Others and Experimentalism, Jungli near Dandeli,
-     Karnataka, artists, approximately 18 hours (14:00–08:00).
-  2. Programme note: 917 words across the two existing note pages.
-  3. Order of event: all 17 encounters, plus existing-recording reference links.
-  4. Sources: numbered bibliography and creation / AI assistance credits.
+Submission structure
+  Local Bio-synthetic_Curation_Submission.docx begins with the supplied MMT
+  plagiarism declaration and a completed AI-use statement. Name and assessment
+  title are filled; student ID, module, lecturers, date and signature stay blank
+  for the student. The institution's attestation wording and logo are retained.
+  The following cover uses the site's forest green, acid yellow and dithered
+  hand-and-leaf illustration. It gives the curator, assignment, themes, venue,
+  duration and artists. The programme note follows, then all 17 encounters,
+  existing-recording links, one 36-entry reference list and image credits.
+  The public booklet has the same festival content without the personal form.
+  Declaration and submission files are local, ignored by Git and not deployed.
 
-Marking criteria — evidence already in the note
-  Theme (30%): paragraph 2 frames Expanding Parameters as composition through
-  relationships between human decisions and plant-derived material, with Music
-  & its Others extending attention beyond humans.
-  Compositional features (30%): BECA's scale, root, range, tempo, sensitivity and
-  rhythm; timbre and register; composed Moog tunes versus measured/composed piano
-  pieces; acoustic sustain and response; multi-plant layering; shared tonal
-  centre, cycles, repetition, silence and sitar ornamentation.
-  Presentation (30%): non-conventional overnight setting; ground-level performers;
-  speaker arrays; headphones; spatial installations; workshop; audience movement,
+Marking criteria — evidence in the note
+  Theme (30%): paragraph 2 frames Expanding Parameters through human decisions
+  and plant-derived variation, with Music & its Others extending attention.
+  Compositional features (30%): scale, root, range, tempo, sensitivity and rhythm;
+  timbre, register, acoustic response, multi-plant layering, tonal centre,
+  repetition, silence and sitar ornamentation; recorded/composed/live contrasts.
+  Presentation (30%): an overnight community setting, ground-level performers,
+  small speaker arrays, headphones, installations, workshop, audience movement,
   participation, return visits and rest; projections receding at sunrise.
-  Diversity (10%): historical electronic composition, contemporary biosonification,
-  acoustic piano, voice, field recordings, multi-plant ensemble, Manganiyar
-  collaboration, modular synthesis, participatory sound and sitar jugalbandi.
+  Diversity (10%): historical electronics, contemporary biosonification, piano,
+  voice, field recordings, Manganiyar collaboration, modular synthesis and sitar.
 
-Preservation and factual distinctions
-  Solo BECA set, Manganiyar collaboration and Anoushka Shankar sunrise jugalbandi
-  remain three separate performances. Mort Garson is recorded listening.
-  Other artists use their own instruments. BECA is generative inside a performer-
-  selected framework. Festival commissions and invitations are hypothetical.
-  Main-stage times, intervals, meals, installations and sunrise-relative timing
-  match the source. Dawn is not assigned an invented exact clock time or date.
-  Festival map is illustrative; regional map shows Dandeli, no exact venue pin.
+Preserved distinctions and attribution
+  BECA solo, Manganiyar collaboration and sunrise jugalbandi are separate sets.
+  Mort Garson appears in recorded listening. BECA generates material inside a
+  performer-selected framework; other artists use their own instruments.
+  Invitations, commissions and production arrangements are hypothetical.
+  The festival map is illustrative. The regional map shows Dandeli without
+  invented venue coordinates. Sunrise is relative, without an invented date.
+  Plantland Radio was founded by Masterplants Orchestra / Tritone Crisantemo.
+  Its station broadcast, directory and individual artist catalogues are distinct.
+  Tom Iddan / Tito the Wize's preview is not confirmed plant-derived music.
+  The Manganiyar Seduction is an existing Roysten Abel reference production;
+  the invited festival ensemble and Modern Biology's acoustic guest are unselected.
 
-Booklet, citations and identity audit
-  Original source files are untouched. The downloadable booklet preserves the
-  note and schedule, removes the old cover picture, corrects the Spotify artist
-  link and companion URL, and includes the complete website reference register.
-  Plantland Radio is explicitly credited to Masterplants Orchestra / Tritone
-  Crisantemo. The station broadcast, artist directory and Tom Iddan / Tito the
-  Wize catalogue are separate links and players. The Tito preview is not claimed
-  to be a plant-derived recording. The Manganiyar Seduction is a reference to an
-  existing Roysten Abel production, not a confirmed festival ensemble.
-  Artist and record profiles cite the numbered register. Existing recordings and
-  new festival works remain distinct. content/media-verification.json records
-  checked player IDs, sources and preview metadata. content/sources.txt is the
-  complete downloadable reference list; it also appears in the booklet.
+Credits and policy
+  Research, concept and curation: Anshul Jain / adotj, Fatty Recording Co.
+  ChatGPT assisted with grammar, paraphrasing supplied research, and production
+  of the website and booklet. OpenAI image generation made the central hand-and-
+  leaf illustration. Artist images are separately credited. Shared wording is
+  editable in content/credits.json and used by the website and report generator.
+  The MMT declaration has been supplied. Handbook sections 4.5 and 4.6 have not;
+  compliance with those unseen sections and tutorial completion is not certified.
+  The student should review and sign the supplied institutional attestations.
 
-Handbook
-  Sections 4.5 and 4.6 of the MMT Student Handbook were not supplied in this folder.
-  Existing AI assistance credits are retained; compliance with those unseen
-  sections has not been verified. This check covers the assignment brief supplied
-  in the chat, not a claim of a particular mark or handbook approval.
-
-Short-edition interface and image credits
-  The front page now fits one screen at desktop and portrait-mobile sizes.
-  All long-form content remains in panels and the booklet. The hand is an
-  original AI-generated sculpture, rendered through live dither/ASCII display.
-  Its dial scrubs illustrative time and light, with keyboard and touch controls.
-  Artist photographs and logos are credited to official artist/production pages
-  in content/image-credits.json and the booklet. Their display crops and dithering
-  do not identify the unconfirmed Manganiyar festival ensemble.
-
-GitHub Pages migration
-  The canonical companion URL is now recorded in content/site.json and used
-  by the booklet generator. The original 917-word note remains unchanged.
-  Root-relative project assets are avoided; GitHub Pages project-path loading
-  is checked under /Bio-Synthtetic-festival/. Source and publication use the
-  shared GitHub repository; the earlier local checkout is retained as a backup.
+Website and publication
+  Source: https://github.com/fattyrecordingco/Bio-Synthtetic-festival
+  Public site: https://fattyrecordingco.github.io/Bio-Synthtetic-festival/
+  The GitHub Pages project path, keyboard/touch controls, reduced motion, player,
+  content preservation and accessible responsive layouts are tested. The artwork
+  changes illustrative time and light; it does not simulate a BECA instrument.

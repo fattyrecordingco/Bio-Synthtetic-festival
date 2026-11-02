@@ -10,3 +10,8 @@ assets/sculpture-source.png
 /Bio-synthetic_Curation_Assignment.docx
 /Bio-synthetic_Editable.html
 /bio-synthetic/
+
+# Keep declarations and personal submission details local.
+/MMT-PlagiarismDeclaration*.docx
+/Bio-synthetic_Curation_Submission.docx
+/Bio-synthetic_Curation_Submission.pdf
