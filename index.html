@@ -1,79 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-phase="afternoon">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#15291f">
-  <meta name="description" content="BIO-SYNTHETIC. An imagined overnight festival of interspecies music by Fatty Recording Co., curated by Anshul Jain / adotj. Jungli, near Dandeli, Karnataka.">
-  <title>BIO-SYNTHETIC — from leaf to first light</title>
-  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" type="module"></script>
-  <script src="art.js" type="module"></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BIO–SYNTHETIC / Fatty Recording Co.</title>
+  <meta name="description" content="An imagined overnight festival of interspecies music at Jungli near Dandeli. Curated by Anshul Jain / adotj for Fatty Recording Co.">
+  <meta name="theme-color" content="#091b12"><link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css"><script type="module" src="stage-ui.js"></script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to festival journey</a>
-  <header class="header">
-    <a class="brand" href="#home" aria-label="Fatty Recording Co. presents Bio-synthetic — home"><img src="assets/mark.svg" width="34" height="34" alt=""><span>Fatty Recording Co.<small>presents Bio-synthetic</small></span></a>
-    <button class="menu-button" aria-expanded="false" aria-controls="nav">Menu <span aria-hidden="true">+</span></button>
-    <nav id="nav" aria-label="Main navigation"><a href="#journey">The journey</a><a href="#programme">Programme</a><a href="#artists">Artists</a><a href="#place">The setting</a><a href="#listening">Listen</a><a class="booklet-link" href="assets/Bio-synthetic-booklet.docx" download>Booklet <span aria-hidden="true">↙</span></a></nav>
-  </header>
-  <main id="main">
-    <section class="hero" id="home" aria-labelledby="festival-title" data-scene="afternoon">
-      <div class="hero-art" aria-hidden="true"><div class="orb"></div><img class="foliage" src="assets/foliage.svg" alt=""><div class="grain"></div><pre class="ascii-field">. . : : + : . .
- : + # # + : .
- : # @ @ # :
- . : + # + : .
-   . . : . .</pre></div>
-      <div class="hero-top"><p>An overnight festival<br>of interspecies music</p><p>Jungli / near Dandeli<br>Karnataka, India</p></div>
-      <div class="hero-title"><p class="mono">Living inputs. Human decisions. Shared ground.</p><h1 id="festival-title"><span>BIO–</span><span>SYNTHETIC</span></h1></div>
-      <div class="hero-bottom"><p>14:00 <span aria-hidden="true">────────</span> 08:00<br><small>Afternoon, night, first light. All times IST.</small></p><a href="#journey" class="enter">Enter the grove <span aria-hidden="true">↓</span></a><p class="proposal">An imagined festival<br>All invitations & commissions proposed</p></div>
-      <span class="edge-code mono" aria-hidden="true">[ leaf → signal → sound → leaf ]</span>
-    </section>
-
-    <section class="intro section-pad" aria-labelledby="intro-title">
-      <div><span class="small-label">A gathering by Fatty Recording Co.</span><h2 id="intro-title">The first instrument<br>may already be<br><em>growing beside you.</em></h2></div>
-      <div class="intro-copy"><p>Plants, circuits, sitar strings, voices. An afternoon that opens into a night of listening, then a shared return to daylight.</p><p>Bio-synthetic is a hypothetical festival curated by Anshul Jain / adotj at Jungli near Dandeli. Follow every set, wander between installations, or sleep before the sunrise finale.</p><a href="#note">Read the programme note <span aria-hidden="true">↘</span></a></div>
-    </section>
-
-    <section id="journey" class="journey section-pad" aria-labelledby="journey-title" data-scene="afternoon">
-      <div class="section-heading"><h2 id="journey-title">Follow the light.</h2><p>Move through an imagined 18 hours.</p></div>
-      <div class="journey-landscape"><div class="journey-sun" aria-hidden="true"></div><img src="assets/foliage.svg" alt="" class="journey-leaves"><span id="scene-time" class="scene-time">14:00</span><pre class="scene-ascii" aria-hidden="true">░▒▓ / living transmission / ▓▒░</pre></div>
-      <div class="time-control"><label for="journey-time">Explore festival time <output id="time-output" for="journey-time">14:00 IST · afternoon</output></label><input type="range" id="journey-time" min="0" max="1080" step="15" value="0" aria-describedby="time-hint"><p id="time-hint" class="sr-only">Use arrow keys to move through time. Dawn is an illustrative scene; the finale follows actual sunrise on the eventual festival date.</p></div>
-      <div class="chapter-buttons" role="group" aria-label="Jump to a chapter"><button data-phase="afternoon" aria-pressed="true">14:00 <span>Afternoon</span></button><button data-phase="twilight" aria-pressed="false">17:00 <span>Twilight</span></button><button data-phase="night" aria-pressed="false">20:30 <span>Night</span></button><button data-phase="dawn" aria-pressed="false">First light <span>Sunrise</span></button></div>
-      <div class="chapter-copy"><h3 id="chapter-title">Begin with curiosity.</h3><div><p id="chapter-description"></p><div id="chapter-highlights"></div><p class="scene-disclaimer">Light is an artistic interpretation. Twilight and dawn would follow the chosen date.</p></div></div>
-    </section>
-
-    <section id="programme" class="programme section-pad" aria-labelledby="programme-title">
-      <div class="section-heading"><h2 id="programme-title">An order of encounters.</h2><p>14:00–08:00 / approximately 18 hours</p></div>
-      <p class="section-intro">All times are IST. This is an undated, hypothetical programme. Open an encounter for its listening prompt, location and artists.</p>
-      <div class="schedule-tools"><div class="filters" role="group" aria-label="Filter programme"><button data-filter="all" aria-pressed="true">Everything</button><button data-filter="performance" aria-pressed="false">Performances</button><button data-filter="listening" aria-pressed="false">Listening</button><button data-filter="installation" aria-pressed="false">Installations</button><button data-filter="saved" aria-pressed="false">My journey <span id="saved-count">0</span></button></div><label class="search-label">Find an encounter<input type="search" id="search" placeholder="Artist, title or space…"></label></div>
-      <div class="schedule-meta"><p id="result-count" role="status" aria-live="polite"></p><button id="reset" hidden>Clear filters</button><button id="expand-all">Expand all</button></div>
-      <div id="schedule"></div>
-      <p class="programme-footnote">Leaf Room: small-group sessions from arrival until midnight, pausing near concerts. Biosis and the fixed-mapping BECA station continue overnight on headphones. The quiet sleeping area remains separate.</p>
-    </section>
-
-    <section class="beca section-pad" aria-labelledby="beca-title"><div class="ascii-installation"><div class="ascii-stage" role="img" aria-label="Original ASCII illustration of two hands adjusting a synthesizer beside growing leaves"><pre id="ascii-art" aria-hidden="true"></pre></div><div class="art-controls"><label><span aria-hidden="true">◐</span><input id="art-light" type="range" min="0" max="100" value="55" aria-label="Artwork light"><span>Light</span></label><label><span aria-hidden="true">⠿</span><input id="art-texture" type="range" min="0" max="100" value="60" aria-label="Artwork texture"><span>Texture</span></label><p>Artwork only</p></div></div><div><span class="small-label">BECA / the biosynth by Anshul Jain / adotj</span><h2 id="beca-title">Leaf, hand,<br>circuit.</h2><p>Scale. Root note. Tempo. The performer sets a framework; incoming plant data supplies generative material. Octave range, sensitivity and rhythmic settings shape what can unfold.</p><p>In his solo, adotj uses synthesizers and MIDI controllers to shape the sound live. Other artists bring their own instruments and systems.</p><button class="text-button" data-event="solo">Find the solo set <span aria-hidden="true">↘</span></button></div></section>
-
-    <section id="artists" class="artists section-pad" aria-labelledby="artists-title"><div class="section-heading"><h2 id="artists-title">The artists.</h2><p>Select a name to listen.</p></div><p class="section-intro">All festival invitations are hypothetical. Artist selection requests an existing recording; streaming services may require a press in their player.</p><div id="artist-roster" class="artist-roster"></div></section>
-
-    <section id="listening" class="listening section-pad" aria-labelledby="listening-title"><div class="section-heading"><h2 id="listening-title">The Leaf Library.</h2><p>Existing recordings / a listening room</p></div><div class="listening-layout"><div><p>Music for plants. Music from measurements. Music made in an unfolding exchange. Listen to the distance between them.</p><div id="record-list" class="record-list" role="group" aria-label="Choose a listening reference"></div><p class="small">The hosted session runs 14:30–15:30. Final contemporary excerpts would be chosen with the artists.</p></div><article id="record-panel" class="record-panel" aria-label="Selected recording"></article></div></section>
-
-    <section id="place" class="place section-pad" aria-labelledby="place-title"><div class="section-heading"><h2 id="place-title">Share the ground.</h2><p>Jungli, near Dandeli / Karnataka</p></div><p class="section-intro">A conceptual festival layout, drawn for this proposal. Select a space to explore. Routes and accessibility provisions describe the festival design, not surveyed venue facilities.</p><div class="map-layout"><div class="festival-map"><svg viewBox="0 0 800 570" role="img" aria-labelledby="map-title map-desc"><title id="map-title">Illustrative Bio-synthetic festival map</title><desc id="map-desc">Five proposed spaces linked by a winding route: Listening Grove, Signal Nursery, Leaf Library, Common Table and Quiet Camp. Not to scale or a surveyed site plan. Use the adjacent space buttons for details.</desc><defs><pattern id="map-dots" width="15" height="15" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="currentColor" opacity=".24"/></pattern></defs><path d="M40 170Q130 20 340 65T745 155L730 445Q530 550 330 510T65 420Z" fill="url(#map-dots)"/><path d="M170 405Q60 270 220 170T475 165Q650 200 610 375Q500 490 390 340T170 405" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 8"/><g fill="none" stroke="currentColor" opacity=".3"><ellipse cx="235" cy="175" rx="110" ry="80"/><ellipse cx="235" cy="175" rx="130" ry="96"/><ellipse cx="610" cy="375" rx="80" ry="58"/><path d="M15 465Q190 530 330 475M480 55Q680 90 775 245"/></g><g class="map-labels" fill="currentColor"><text x="42" y="48">[ an imagined listening ecology ]</text><text x="605" y="535">Not to scale</text></g></svg><button style="--x:28%;--y:29%" data-space="grove" aria-pressed="true"><b>01</b><span>Listening Grove</span></button><button style="--x:64%;--y:28%" data-space="nursery" aria-pressed="false"><b>02</b><span>Signal Nursery</span></button><button style="--x:45%;--y:58%" data-space="library" aria-pressed="false"><b>03</b><span>Leaf Library</span></button><button style="--x:20%;--y:72%" data-space="table" aria-pressed="false"><b>04</b><span>Common Table</span></button><button style="--x:77%;--y:70%" data-space="camp" aria-pressed="false"><b>05</b><span>Quiet Camp</span></button></div><article id="space-panel" class="space-panel" aria-label="Selected festival space"></article></div><div class="regional"><div><h3>A place in the Western Ghats.</h3><p>Jungli’s published venue information places it near Dandeli, Karnataka. The exact site location is not public. The regional map shows Dandeli, with no festival pin.</p><a href="https://junglithenomad.com/press-kit/" target="_blank" rel="noopener noreferrer">Read Jungli’s venue information ↗</a></div><div id="regional-map" class="regional-map"><span class="region-glyph" aria-hidden="true">╱╱ Karnataka ╱╱<br>Goa ····· Dandeli<br>──────────────</span><button id="load-map">Load regional map of Dandeli</button><p>Google Maps / requires internet</p></div></div></section>
-
-    <section class="first-light section-pad" aria-labelledby="first-light-title"><div class="dawn-orb" aria-hidden="true"></div><p class="mono">Sunrise ±45 minutes / hypothetical commission</p><h2 id="first-light-title">First light.<br>Shared resonance.</h2><p class="finale-artists">Anoushka Shankar × adotj</p><p>A jugalbandi for sitar, BECA and plants. Agreed pitch material opens a conversation in melodic response, sustained resonance and silence. Then daylight. Then breakfast.</p><button class="text-button" data-event="dawn">Explore the sunrise finale ↘</button></section>
-
-    <section id="note" class="note section-pad" aria-labelledby="note-title"><details id="programme-note"><summary><div><span class="small-label">Curated by Anshul Jain / adotj</span><h2 id="note-title">Before you listen.</h2><p>Programme note / <span id="word-count">917</span> words / original text preserved</p></div><span class="open-icon" aria-hidden="true">+</span></summary><article id="note-text" class="note-text"></article></details></section>
-    <section id="sources" class="sources section-pad"><details><summary><h2>Sources & creation credits</h2><span class="open-icon" aria-hidden="true">+</span></summary><p>The numbered references correspond to the original programme note. They document existing practices and recordings. All festival invitations, titled live collaborations and installation commissions are hypothetical.</p><div class="reference-downloads"><a href="content/sources.txt" download>Reference register (.txt) ↙</a><a href="ASSIGNMENT-CHECK.txt" download>Assignment check (.txt) ↙</a></div><ol id="source-list"></ol><div class="credits"><p>Festival concept and BECA: Anshul Jain / adotj, Fatty Recording Co. Spotify artist credit: adotj.music. BECA’s controls are described from its creator’s supplied account.</p><p>Original programme note and booklet retained from the supplied files. This website rebuild uses original code-drawn botanical artwork and ASCII elements; these are illustrative, not images of Jungli. ChatGPT assisted with research, design, code and verification.</p><p>The visual reference is <a href="https://www.linkinpark.com/" target="_blank" rel="noopener noreferrer">Linkin Park’s artwork-led website</a> and <a href="https://sasukeharaguchi.com/discography/" target="_blank" rel="noopener noreferrer">Sasuke Haraguchi’s interactive discography</a>. Artist music belongs to the artists and streaming services. Players load on request, require internet and may have regional or service restrictions. Nothing plays on page load. Selecting an artist requests playback.</p><p id="verification-note"></p><p>This website presents a hypothetical festival. No event is booked.</p></div></details></section>
-  </main>
-  <footer class="footer"><a class="footer-title" href="#home">BIO–SYNTHETIC</a><div><p>Fatty Recording Co.<br>Curated by Anshul Jain / adotj</p><p>An imagined festival.<br>Stay for breakfast.</p><a href="assets/Bio-synthetic-booklet.docx" download>Download booklet (.docx) ↙</a></div></footer>
+  <a class="skip" href="#artists">Skip to artists</a>
+  <div class="experience">
+    <header class="masthead"><a href="./" class="brand">Fatty Recording Co.<span>presents</span></a><nav aria-label="Festival"><button data-panel="programme">Programme</button><button data-panel="listening">Listen</button><button data-panel="place">Place</button><button data-panel="note">Note</button><a href="assets/Bio-synthetic-booklet.docx" download aria-label="Download festival booklet" title="Download booklet">↙</a></nav></header>
+    <main id="main" class="poster">
+      <div class="title-block"><h1>BIO–SYNTHETIC</h1><div class="festival-caption"><p>Interspecies music, from afternoon to first light.</p><p>Jungli, near Dandeli, Karnataka</p></div></div>
+      <section class="scene" aria-label="Interactive festival artwork">
+        <div class="scene-meta"><span id="phase-name">Afternoon</span><span id="scene-clock">14:00</span></div>
+        <div class="art-frame" id="art-frame"><canvas id="sculpture" width="960" height="640" role="img" aria-label="A hand turning a synthesizer knob beside a single leaf"></canvas><div class="knob-control" id="time-dial" role="slider" tabindex="0" aria-label="Festival time" aria-valuemin="0" aria-valuemax="1080" aria-valuenow="0" aria-valuetext="14:00 IST, afternoon" title="Festival time"><span class="knob-tick" aria-hidden="true"></span></div></div>
+        <button id="art-mode" class="scene-caption" aria-label="ASCII artwork" aria-pressed="false" title="ASCII artwork"><span aria-hidden="true">[#]</span></button>
+      </section>
+      <section id="artists" class="artist-field" aria-labelledby="artists-title"><h2 id="artists-title" class="sr-only">Artists</h2><div class="artist-field-heading"><span>Artists</span><div class="strip-controls"><button id="artists-prev" aria-label="Previous artists" title="Previous artists">←</button><button id="artists-next" aria-label="Next artists" title="Next artists">→</button></div></div><ul id="artist-strip" class="artist-strip"></ul></section>
+    </main>
+    <footer class="footer"><div class="time-track"><span>14:00</span><label class="sr-only" for="journey-time">Festival time</label><input id="journey-time" type="range" min="0" max="1080" step="15" value="0" aria-label="Festival time"><span>08:00</span></div><div class="footer-line"><p>Curated by Anshul Jain / adotj</p><p class="hypothetical">Hypothetical festival · all commissions proposed</p><button data-panel="sources">Sources & credits</button></div></footer>
+  </div>
+  <dialog id="info-panel" aria-labelledby="panel-title"><div class="panel-header"><h2 id="panel-title"></h2><button id="panel-close" aria-label="Close panel" title="Close">×</button></div><div id="panel-content" class="panel-content"></div></dialog>
   <section id="floating-player" class="floating-player" aria-label="Artist music player" hidden>
     <div class="player-bar"><button id="music-toggle" aria-label="Play recording" title="Play recording">▶</button><div class="track-info"><span id="track-name"></span><span id="track-artist"></span></div><button id="player-expand" aria-label="Show streaming player" aria-expanded="false" aria-controls="player-drawer" title="Show streaming player">⌃</button><button id="player-close" aria-label="Stop and close player" title="Stop and close player">×</button></div>
-    <div id="player-drawer" hidden><div id="persistent-embed"></div><p id="player-message" role="status"></p><a id="track-source" target="_blank" rel="noopener noreferrer">Open recording ↗</a></div>
-    <audio id="preview-audio" preload="none"></audio>
+    <div id="player-drawer" hidden><div id="persistent-embed"></div><p id="player-message" role="status"></p><a id="track-source" target="_blank" rel="noopener noreferrer">Open recording ↗</a></div><audio id="preview-audio" preload="none"></audio>
   </section>
-  <dialog id="artist-dialog" aria-labelledby="dialog-title"><button id="dialog-close" class="dialog-close" aria-label="Close artist profile">Close <span aria-hidden="true">×</span></button><div id="dialog-body"></div></dialog>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <noscript><p class="noscript">Enable JavaScript to explore the schedule, profiles and programme note, or <a href="assets/Bio-synthetic-booklet.docx" download>download the complete original booklet</a>.</p></noscript>
+  <p id="toast" class="toast" role="status" aria-live="polite"></p>
+  <noscript><p class="noscript">The interactive edition needs JavaScript. <a href="assets/Bio-synthetic-booklet.docx" download>Read the complete booklet.</a></p></noscript>
 </body>
 </html>

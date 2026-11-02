@@ -60,3 +60,12 @@ Handbook
   Existing AI assistance credits are retained; compliance with those unseen
   sections has not been verified. This check covers the assignment brief supplied
   in the chat, not a claim of a particular mark or handbook approval.
+
+Short-edition interface and image credits
+  The front page now fits one screen at desktop and portrait-mobile sizes.
+  All long-form content remains in panels and the booklet. The hand is an
+  original AI-generated sculpture, rendered through live dither/ASCII display.
+  Its dial scrubs illustrative time and light, with keyboard and touch controls.
+  Artist photographs and logos are credited to official artist/production pages
+  in content/image-credits.json and the booklet. Their display crops and dithering
+  do not identify the unconfirmed Manganiyar festival ensemble.

@@ -3,3 +3,5 @@ test-results/
 playwright-report/
 __pycache__/
 dist/
+assets/raw/
+assets/sculpture-source.png

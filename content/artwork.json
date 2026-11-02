@@ -1,0 +1,7 @@
+{
+  "mode": "Built-in OpenAI image generation",
+  "asset": "assets/sculpture.webp",
+  "prompt": "A single anatomically accurate porcelain-white right hand pinching one large analog synthesizer rotary knob, beside a single large silver leaf on a fine curved stem. Pure black background, strong studio rim lighting, small acid yellow edge light, generous negative space. No text, extra hands, keyboards, cables, forest, collage or particles. Original illustrative sculpture, not a photograph of an artist or a specific instrument.",
+  "display": "Original generated sculpture displayed through live ordered dithering or ASCII. Pointer, touch and keyboard dial controls illustrative afternoon, twilight, night and dawn; the native time range shares its state. No audio synthesis or simulated plant data.",
+  "original_retained": "Codex generated_images/01a19c34-0464-7ec2-8fdc-2015d1dcebb0/exec-8ea744ca-bddb-43ee-a787-dad466f16ecb.png"
+}

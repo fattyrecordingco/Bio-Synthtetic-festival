@@ -1,72 +1,80 @@
-BIO-SYNTHETIC — website source
+BIO-SYNTHETIC / short interactive edition
 
-Run
-  Open a terminal in this folder and run:
-    node scripts/serve.mjs
-  Open http://localhost:4173
-  Stop with Ctrl+C. Requires Node 18 or newer, no install or build step.
-  Alternatively: python3 -m http.server 4173
+Public website
+  https://bio-synthetic-first-light.fatty-record-8662.chatgpt.site
+Source
+  https://github.com/fattyrecordingco/Bio-Synthtetic-festival
 
-The website needs a local HTTP server to read its content files. Double-clicking
-index.html will not load those files. The public companion is published with Sites; source is maintained in the supplied GitHub repository.
+Run locally
+  npm start
+  Open http://localhost:4173. Stop with Ctrl+C.
+  Node 18+ is required. No dependency install is needed to run the site.
+  Alternatively use: python3 -m http.server 4173
+
+The front page is a single poster-like scene. Programme, listening room, place,
+programme note and references open in a reusable panel. Escape or × closes it.
+The hand's dial responds to pointer drag, touch, arrow keys, Home/End and Page
+Up/Down. The bottom time range is an alternative. Both share the same state.
+The [#] control switches the artwork between dither and ASCII. No synth or
+plant-data simulation runs. Reduced motion disables the sculpture rotation.
 
 Edit
-  content/festival.json       Artists, schedule, listening references, spaces,
-                              source links, verified preview URLs and credits.
-  content/programme-note.txt  Original 917-word note, separate from all other copy.
-  index.html                 Page structure and short interface text.
-  styles.css                 Colours, typography, layout and responsive rules.
-  art.js                     Original ASCII hands, leaves and synth illustration.
-  scripts/draw-foliage.py     Rebuild assets/foliage.svg with Python 3.
-  app.js                     Schedule, profiles, map, time and saved journey.
-  player.js                  Persistent recording player and service integrations.
+  index.html                  The short front page and player structure.
+  styles.css                  Palette, responsive layout and panel styles.
+  stage-ui.js                 Panels, schedule, saved sets, maps and time controls.
+  stage-art.js                Live dithering, ASCII and portrait cropping.
+  player.js                   One persistent recording player.
+  content/festival.json       All artists, encounters, recordings and references.
+  content/programme-note.txt  Protected original note: 917 words.
+  content/image-credits.json  Image origins and attribution.
+  content/artwork.json        Original sculpture generation prompt and credit.
+
+Images
+  Artist photographs and logos come from their credited artist/production pages.
+  Download originals: python3 scripts/fetch-portraits.py (uses the internet).
+  Originals are stored in ignored assets/raw/. The published web copies are in
+  assets/artists/. Dithering and profile crops happen at display time in canvas.
+  The generated sculpture is assets/sculpture.webp. Its generation prompt is in
+  content/artwork.json; the original PNG is retained in Codex generated_images.
+  The Manganiyar image is from The Manganiyar Seduction, an existing production,
+  and does not identify a confirmed festival ensemble.
 
 Music
-  Nothing loads or plays on page arrival. Selecting an artist requests playback
-  in the floating player. Verified Spotify previews play after that click when
-  the browser permits it. These are excerpts, not full songs or festival audio.
-  SoundCloud and YouTube request playback through their official APIs.
-  Bandcamp has no public remote playback API: its real controls stay visible,
-  requiring play in its own iframe. Browser policies, location, service consent
-  and availability can also require a second press. No fabricated playback state.
-  Switching artists stops the prior recording. Closing a profile keeps music
-  running; closing the floating player stops it. Preview endings do not loop.
-  The original streaming links remain available if a preview is unavailable.
+  Nothing loads or plays on arrival. Selecting an artist requests their existing
+  recording. Verified Spotify previews can play from that gesture; previews end
+  without looping. SoundCloud and YouTube use official controllers. Bandcamp and
+  Plantland Radio retain their real service controls. Some browsers and services
+  require another play press. The full source link remains available if a service
+  is unavailable. No button claims playback until the service reports it.
+  Closing a profile keeps music playing; closing the floating player stops it.
+  Switching artists stops the previous recording.
 
-Local assets
-  Artwork, styles, scripts, content, booklet and fonts are stored here. Streaming
-  services, recordings, external sources and the optional regional map need the
-  internet. Nothing is uploaded. No analytics or external requests on arrival.
-  Saved schedule choices use browser localStorage; nothing leaves the browser.
+Content and booklet
+  All 17 original encounters and nine artists are preserved. BECA solo, the
+  Manganiyar collaboration and sunrise jugalbandi remain separate. The original
+  917-word programme note is unchanged. The booklet includes the full reference
+  register, artist-image credits and the public companion link.
+  Regenerate: python3 scripts/build-booklet.py
+  See ASSIGNMENT-CHECK.txt for the supplied brief and policy limits.
 
-Booklet
-  The downloadable DOCX preserves the supplied 917-word note, schedule and
-  submission details. Its old cover picture is removed; references, project
-  attribution, Spotify artist link and public companion link are reconciled.
-  It contains the complete website reference register. Rebuild it with:
-    python3 scripts/build-booklet.py
-  The two original files one folder above are untouched.
-  See ASSIGNMENT-CHECK.txt for the supplied brief and verification findings.
-
-Checks (development only)
+Checks and build (development dependencies only)
   npm install
   npx playwright install chromium
   npm test
   Start the local server, then: npm run test:browser
-  Browser checks use Playwright and axe-core. Linux Chromium may need system
-  libraries; run npx playwright install-deps chromium if your machine needs them.
-  These packages are not needed to run the website.
+  npm run build
+  dist/ contains only the public website and files. Raw images, templates and
+  test tools are excluded. Linux browsers may need additional system libraries.
+
+Publication
+  Source is mirrored to the supplied GitHub repository. Sites serves the public
+  website identified by .openai/hosting.json. A GitHub push alone does not publish
+  a new Sites version. Keep public access unchanged on subsequent updates.
 
 Credits
-  Festival concept, BECA and original note: Anshul Jain / adotj, Fatty Recording Co.
-  ChatGPT assisted with the rebuild, original vector/ASCII artwork and tests.
-  Anton and Space Grotesk: SIL Open Font License; licences in assets/.
-  Music remains on its original services, credited and linked to the artists.
-  The installed frontend-copy-cleanup skill is at:
-  .agents/skills/frontend-copy-cleanup/SKILL.md (also installed in Codex).
-
-Publishable output
-  npm run build writes the static site into dist/. It includes only the public
-  website, assets, reference register and assignment check, not tools or templates.
-  .openai/hosting.json identifies its public Sites host. The source repository is
-  https://github.com/fattyrecordingco/Bio-Synthtetic-festival
+  Concept, curation and BECA: Anshul Jain / adotj, Fatty Recording Co.
+  ChatGPT: research, drafting, code and design assistance.
+  Central sculpture: built-in OpenAI image generation; live dither/ASCII display.
+  Artist sources: content/image-credits.json and the booklet.
+  Anton and Space Grotesk: SIL Open Font License (licences in assets/).
+  Front-end copy skill: .agents/skills/frontend-copy-cleanup/SKILL.md.

@@ -8,7 +8,8 @@ function loadScript(url) {
   if (scripts.has(url)) return scripts.get(url);
   const promise = new Promise((resolve,reject) => {
     const script = document.createElement('script'); script.src=url;
-    script.onload=resolve; script.onerror=()=>reject(new Error('The streaming service is unavailable.'));
+    const timer=setTimeout(()=>reject(new Error('The streaming service did not respond.')),10000);
+    script.onload=()=>{clearTimeout(timer);resolve();}; script.onerror=()=>{clearTimeout(timer);reject(new Error('The streaming service is unavailable.'));};
     document.head.append(script);
   });
   scripts.set(url,promise); return promise;
@@ -44,6 +45,7 @@ function iframe(src,title,height=240) {
 }
 
 export async function playSelection(item) {
+  if(!item)return;
   const token=++generation;
   clearMedia(); selection=item; service=item.media[0];
   $('#floating-player').hidden=false;
@@ -74,29 +76,33 @@ export async function playSelection(item) {
       $('#player-message').textContent='Existing recording. Press play in Bandcamp; its controls stay here while you browse.';
       setDrawer(true);
     } else if(service==='soundcloud') {
+      $('#music-toggle').disabled=true;
       const frame=iframe(`https://w.soundcloud.com/player/?url=${encodeURIComponent(id)}&auto_play=true&show_comments=false&visual=false`,`${item.name} — existing recordings`,190);
       await loadScript('https://w.soundcloud.com/player/api.js');
       if(token!==generation)return;
       controller=window.SC.Widget(frame);
+      const widget=controller;
       const events=window.SC.Widget.Events;
-      controller.bind(events.READY,()=>{if(token===generation){controller.play();controller.getCurrentSound(sound=>{if(sound&&token===generation)$('#track-name').textContent=sound.title;});}});
-      controller.bind(events.PLAY,()=>{if(token===generation){setPlaying(true);controller.getCurrentSound(sound=>{if(sound&&token===generation)$('#track-name').textContent=sound.title;});}});
+      controller.bind(events.READY,()=>{if(token===generation){$('#music-toggle').disabled=false;widget.play();widget.getCurrentSound(sound=>{if(sound&&token===generation)$('#track-name').textContent=sound.title;});}});
+      controller.bind(events.PLAY,()=>{if(token===generation){$('#music-toggle').disabled=false;setPlaying(true);widget.getCurrentSound(sound=>{if(sound&&token===generation)$('#track-name').textContent=sound.title;});}});
       controller.bind(events.PAUSE,()=>{if(token===generation)setPlaying(false);});
       controller.bind(events.FINISH,()=>{if(token===generation)setPlaying(false);});
       controller.bind(events.ERROR,()=>{if(token===generation)fallback('SoundCloud could not load this recording.');});
       setDrawer(true);
       $('#player-message').textContent='Existing recording. If playback is blocked, press play in SoundCloud.';
     } else if(service==='youtube') {
+      $('#music-toggle').disabled=true;
       const holder=document.createElement('div');holder.id='youtube-player';$('#persistent-embed').replaceChildren(holder);
       await new Promise((resolve,reject)=>{
         if(window.YT?.Player){resolve();return;}
-        window.onYouTubeIframeAPIReady=resolve;
+        const timeout=setTimeout(()=>reject(new Error('YouTube did not respond. Open the recording directly.')),10000);
+        window.onYouTubeIframeAPIReady=()=>{clearTimeout(timeout);resolve();};
         loadScript('https://www.youtube.com/iframe_api').catch(reject);
       });
       if(token!==generation)return;
       controller=new window.YT.Player(holder,{host:'https://www.youtube-nocookie.com',height:230,width:'100%',videoId:id,
         playerVars:{autoplay:1,playsinline:1,origin:location.origin},events:{
-          onReady:event=>{if(token===generation)event.target.playVideo();},
+          onReady:event=>{if(token===generation){$('#music-toggle').disabled=false;event.target.playVideo();}},
           onStateChange:event=>{if(token===generation){setPlaying(event.data===1);const title=event.target.getVideoData()?.title;if(title)$('#track-name').textContent=title;}},
           onAutoplayBlocked:()=>{if(token===generation)fallback('Press play in the video player.');},
           onError:()=>{if(token===generation)fallback('This video is unavailable here.');}
@@ -122,5 +128,6 @@ $('#music-toggle').addEventListener('click',async()=>{
 $('#player-expand').addEventListener('click',()=>setDrawer($('#player-drawer').hidden));
 $('#player-close').addEventListener('click',()=>{
   ++generation; clearMedia();selection=null;$('#floating-player').hidden=true;
-  document.querySelector('#artists h2').setAttribute('tabindex','-1');document.querySelector('#artists h2').focus({preventScroll:true});
+  const returnTo=document.querySelector('.artist-button[aria-pressed="true"]')||document.querySelector('#artists h2');
+  if(returnTo){returnTo.setAttribute('tabindex',returnTo.tagName==='BUTTON'?'0':'-1');returnTo.focus({preventScroll:true});}
 });

@@ -103,7 +103,7 @@ replacements = {
     'https://bio-synthetic.fatty-record-8662.chatgpt.site':args.site_url,
     'The hosted companion is private. The supplied Bio-synthetic_Editable.html file opens locally without a ChatGPT sign-in. Streaming players, maps and external links require internet access.':'The rebuilt interactive companion is public at the link above. A local copy is also supplied; see README.txt. Recordings, streaming players and regional maps require internet access.',
     'Short artist-selected excerpts by Biosis, Wild Anima and Tom Iddan. Compare synthesizer layers, voice, percussion and environmental recordings; final excerpts would be chosen with the artists.':'Plantland Radio was founded by Masterplants Orchestra / Tritone Crisantemo.[4,6] Proposed selections include Biosis, Wild Anima and Tom Iddan; excerpts would be chosen with the artists. The website separates the station broadcast from individual catalogue examples. A Tito the Wize preview introduces a wider catalogue and is not identified as a plant-derived track.',
-    'Generative AI assistance: ChatGPT assisted with research, programme development, drafting, document layout and the interactive website. Botanical artwork was generated using OpenAI image generation from a prompt specifying dithered leaves, ASCII-like marks and a green-and-ivory palette.':'Generative AI assistance: ChatGPT assisted with research, programme development, drafting, document layout and the website rebuild. The new website uses original code-drawn dithered foliage and ASCII hands, leaves and synthesizer artwork. Its artwork controls are visual; they do not simulate BECA or live plant data.'
+    'Generative AI assistance: ChatGPT assisted with research, programme development, drafting, document layout and the interactive website. Botanical artwork was generated using OpenAI image generation from a prompt specifying dithered leaves, ASCII-like marks and a green-and-ivory palette.':'Generative AI assistance: ChatGPT assisted with research, programme development, drafting, document layout and the website rebuild. The rebuilt website uses an original hand, knob and leaf sculpture created with OpenAI image generation, displayed through live dither and ASCII rendering. Artist images come from credited artist and production sources. The artwork control changes the illustrative time and light, without simulating BECA or live plant data.'
 }
 protected = note.split('\n\n')
 for para in list(doc.getElementsByTagName('w:p')):
@@ -126,6 +126,12 @@ append(paragraph('Evidence and links by artist',heading=True))
 for item in data['artists']:
     citations=', '.join(str(value) for value in item['sourceRefs'])
     append(paragraph(f"{item['name']} — practice and listening references [{citations}]. {item['caption']}"))
+append(paragraph('Website image credits',heading=True))
+for artist in data['artists']:
+    image = artist.get('image')
+    if image:
+        p = paragraph(artist['name'] + ' — '); p.appendChild(link(image['credit'],image['source'])); append(p)
+append(paragraph('The Manganiyar image documents The Manganiyar Seduction, an existing Roysten Abel production. It does not identify a confirmed festival ensemble. Display dithering and cropping occur in the browser; the source images are credited above.'))
 append(paragraph('Additional online references [11]–[36]',heading=True))
 append(paragraph('References [1]–[10] appear on the preceding Sources and credits page. The following register continues that numbering.'))
 for index,(title,url) in enumerate(data['sources'][10:],11):

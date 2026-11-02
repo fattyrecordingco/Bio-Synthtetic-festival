@@ -2,7 +2,7 @@ BIO-SYNTHETIC — Fatty Recording Co.
 
 [Open the festival website](https://bio-synthetic-first-light.fatty-record-8662.chatgpt.site)
 
-An imagined overnight festival of interspecies music, curated by Anshul Jain / adotj. The public website is hosted with Sites. This repository contains its maintainable static source.
+A single-screen interactive festival poster with a live dither/ASCII sculpture, credited artist portraits and compact programme panels. An imagined overnight festival of interspecies music, curated by Anshul Jain / adotj. The public website is hosted with Sites. This repository contains its maintainable static source.
 
 Run locally with `npm start` (Node 18+, no dependency installation required). Open http://localhost:4173. See [README.txt](README.txt) for editing, player behaviour and development checks.
 

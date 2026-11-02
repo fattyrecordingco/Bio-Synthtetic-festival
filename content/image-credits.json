@@ -1,0 +1,101 @@
+{
+  "adotj": {
+    "path": "assets/artists/adotj.webp",
+    "original": "https://image-cdn-fa.spotifycdn.com/image/ab676161000051747df459e9a4ac43948d0a2953",
+    "source": "https://open.spotify.com/artist/1taiQkQLBzfeMXIWMi2Hdx",
+    "credit": "adotj.music / Spotify artist image",
+    "alt": "Artist logo for adotj.music",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/adotj.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "wild": {
+    "path": "assets/artists/wild.webp",
+    "original": "https://image-cdn-fa.spotifycdn.com/image/ab6761610000517496d4e2ba1c03ce843619a15f",
+    "source": "https://open.spotify.com/artist/5hFivotCpgANmtLv4yx67u",
+    "credit": "Wild Anima / Spotify artist image",
+    "alt": "Wild Anima artist portrait",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/wild.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "anoushka": {
+    "path": "assets/artists/anoushka.webp",
+    "original": "https://www.anoushkashankar.com/media/pages/biography/1002107232-1792825824/ltr037_anoushka-shankar_1-aa-laura-lewis_hq.jpg",
+    "source": "https://www.anoushkashankar.com/biography",
+    "credit": "Anoushka Shankar / official biography",
+    "alt": "Portrait of Anoushka Shankar",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/anoushka.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "modern": {
+    "path": "assets/artists/modern.webp",
+    "original": "https://i1.sndcdn.com/avatars-tb9DgufT3vfGWbOI-OIEz5Q-t500x500.jpg",
+    "source": "https://soundcloud.com/modernbiology",
+    "credit": "Modern Biology / SoundCloud avatar",
+    "alt": "Modern Biology artist portrait",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/modern.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "mileece": {
+    "path": "assets/artists/mileece.webp",
+    "original": "https://i1.sndcdn.com/avatars-000685043276-dximhd-t500x500.jpg",
+    "source": "https://soundcloud.com/Mileece",
+    "credit": "Mileece / SoundCloud avatar",
+    "alt": "Mileece artist image",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/mileece.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "biosis": {
+    "path": "assets/artists/biosis.webp",
+    "original": "https://f4.bcbits.com/img/0047296945_21.jpg",
+    "source": "https://biosis.bandcamp.com/track/wachuma-fm",
+    "credit": "Biosis / Bandcamp artist image",
+    "alt": "Biosis artist portrait",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/biosis.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "brian": {
+    "path": "assets/artists/brian.webp",
+    "original": "https://images.squarespace-cdn.com/content/v1/60c5b3891d84ec1d37ee3d7d/96c8c585-c1ce-4418-b3e6-97c0e1811f9a/Briandsouzapresspic6.jpeg?format=500w",
+    "source": "https://www.briandsouza.in/plants-can-dance",
+    "credit": "Brian d’Souza / official press image",
+    "alt": "Portrait of Brian d’Souza",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/brian.jpg",
+    "fit": "cover",
+    "invert": false
+  },
+  "masterplants": {
+    "path": "assets/artists/masterplants.webp",
+    "original": "https://images.squarespace-cdn.com/content/v1/5f1054b1511b113453347e2b/91977f0d-9392-416e-8474-9849b8edc477/MP_Logo_Blk.png?format=500w",
+    "source": "https://www.masterplants.net/orchestra",
+    "credit": "Masterplants Orchestra / official logo",
+    "alt": "Masterplants Orchestra logo",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/masterplants.png",
+    "fit": "contain",
+    "invert": true
+  },
+  "manganiyar": {
+    "path": "assets/artists/manganiyar.webp",
+    "original": "https://roystenabel.co/core-source/uploads/2026/01/tms9.webp",
+    "source": "https://roystenabel.co/the-manganiyar-seduction/",
+    "credit": "Roysten Abel Productions / The Manganiyar Seduction",
+    "alt": "Reference photograph of The Manganiyar Seduction, not a confirmed festival ensemble",
+    "downloaded": "2026-11-02",
+    "raw": "assets/raw/manganiyar.webp",
+    "fit": "cover",
+    "invert": false
+  }
+}
